@@ -20,16 +20,49 @@ automated.
 
 ## Contents
 
-| Path | Kit | Generator | Pages |
+| Kit | Live preview | Generator | Pages |
 |---|---|---|---|
-| `splunk-sdk-python/` | Splunk SDK for Python | Sphinx + Furo | 12 |
-| `splunk-sdk-java/` | Splunk SDK for Java | JavaDoc 21 | 187 |
-| `splunk-library-javalogging/` | Splunk Logging for Java | JavaDoc 21 | 42 |
-| `splunk-sdk-javascript/` | Splunk SDK for JavaScript | JSDoc 4 | 49 |
-| `splunk-javascript-logging/` | Splunk Logging for JavaScript | JSDoc 4 | 6 |
-| `splunk-bunyan-logger/` | Splunk Bunyan Logger | JSDoc 4 | 5 |
+| Splunk SDK for Python | [splunk-sdk-python/](https://pking70.github.io/sdk-docs-preview/splunk-sdk-python/) | Sphinx + Furo | 12 |
+| Splunk SDK for Java | [splunk-sdk-java/](https://pking70.github.io/sdk-docs-preview/splunk-sdk-java/) | JavaDoc 21 | 187 |
+| Splunk Logging for Java | [splunk-library-javalogging/](https://pking70.github.io/sdk-docs-preview/splunk-library-javalogging/) | JavaDoc 21 | 42 |
+| Splunk SDK for JavaScript | [splunk-sdk-javascript/](https://pking70.github.io/sdk-docs-preview/splunk-sdk-javascript/) | JSDoc 4 | 49 |
+| Splunk Logging for JavaScript | [splunk-javascript-logging/](https://pking70.github.io/sdk-docs-preview/splunk-javascript-logging/) | JSDoc 4 | 6 |
+| Splunk Bunyan Logger | [splunk-bunyan-logger/](https://pking70.github.io/sdk-docs-preview/splunk-bunyan-logger/) | JSDoc 4 | 5 |
 
 301 HTML pages total.
+
+Some representative deep links, to confirm nested paths resolve:
+
+- [`splunk-sdk-java/com/splunk/Service.html`](https://pking70.github.io/sdk-docs-preview/splunk-sdk-java/com/splunk/Service.html)
+- [`splunk-sdk-javascript/splunkjs.Service.html`](https://pking70.github.io/sdk-docs-preview/splunk-sdk-javascript/splunkjs.Service.html)
+- [`splunk-library-javalogging/com/splunk/logging/HttpEventCollectorSender.html`](https://pking70.github.io/sdk-docs-preview/splunk-library-javalogging/com/splunk/logging/HttpEventCollectorSender.html)
+- [`splunk-sdk-java/search.html`](https://pking70.github.io/sdk-docs-preview/splunk-sdk-java/search.html) — JavaDoc's built-in client-side search
+- [`splunk-sdk-python/search.html`](https://pking70.github.io/sdk-docs-preview/splunk-sdk-python/search.html) — Sphinx's built-in client-side search
+
+## How these URLs map to production
+
+This preview nests everything one level deeper than production will, because a
+project repo on a personal account serves at
+`<user>.github.io/<repo>/`. In production each kit gets its own repo under the
+`splunk` org, so it serves one level higher:
+
+| Preview (here) | Production (proposed) |
+|---|---|
+| `pking70.github.io/sdk-docs-preview/splunk-sdk-python/` | `splunk.github.io/splunk-sdk-python/` |
+| `pking70.github.io/sdk-docs-preview/splunk-sdk-java/` | `splunk.github.io/splunk-sdk-java/` |
+| `pking70.github.io/sdk-docs-preview/splunk-library-javalogging/` | `splunk.github.io/splunk-library-javalogging/` |
+| `pking70.github.io/sdk-docs-preview/splunk-sdk-javascript/` | `splunk.github.io/splunk-sdk-javascript/` |
+| `pking70.github.io/sdk-docs-preview/splunk-javascript-logging/` | `splunk.github.io/splunk-javascript-logging/` |
+| `pking70.github.io/sdk-docs-preview/splunk-bunyan-logger/` | `splunk.github.io/splunk-bunyan-logger/` |
+
+Because every kit emits only relative asset paths, the extra depth here
+changes nothing — which is itself the useful result. If it renders correctly at
+this depth it will render correctly at the shallower production depth.
+
+Versioning would add one more segment, e.g.
+`splunk.github.io/splunk-sdk-python/latest/` and
+`splunk.github.io/splunk-sdk-python/2.1.0/`, with `latest/` as the canonical
+path and older versions carrying `rel=canonical` plus `noindex`.
 
 ## What it demonstrates
 
@@ -47,6 +80,19 @@ nothing server-side. This decouples the migration from any search-backend work.
 **Version selection.** Each masthead carries a version selector. In this
 preview the options point at the future production URLs and therefore dead-end;
 see the note on the landing page.
+
+## Verified live
+
+Checked 2026-10-16 against the published site — all 200, all serving real
+content rather than a fallback shell:
+
+- landing page and all six kit entry points
+- `_static/splunk-theme.css` (11 KB) and `_static/styles/furo.css` (51 KB) —
+  this is the `.nojekyll` check; if Jekyll were stripping `_static/` these
+  would 404 and the Python kit would render unstyled
+- `searchindex.js` (44 KB) for Sphinx and `search.html` for JavaDoc, so
+  in-page search works with no backend
+- nested deep links three levels down, e.g. `com/splunk/Service.html` (184 KB)
 
 ## Notes
 
