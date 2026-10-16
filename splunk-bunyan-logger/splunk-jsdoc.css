@@ -586,3 +586,16 @@ br.clear {
     display: none;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   PREVIEW ONLY — version picker hidden on this kit.
+
+   Only the Python kit has real alternate versions built. On every other kit
+   the picker's options point at production URLs (splunk.github.io/<repo>/...)
+   that do not exist yet, so clicking one lands on a GitHub 404. Hiding the
+   control is honest: the feature is demonstrated on the Python kit and simply
+   absent here, rather than present and dead.
+
+   Remove this block once the kit has real versioned builds.
+   --------------------------------------------------------------------------- */
+.splunk-version { display: none !important; }
