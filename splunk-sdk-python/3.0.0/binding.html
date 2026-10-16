@@ -1,0 +1,1106 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="splunklib.client" href="client.html"><link rel="prev" title="binding" href="index.html">
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2025.12.19 -->
+        <title>splunklib.binding - Splunk SDK for Python API Reference</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="_static/splunk-theme.css?v=5d15ced1" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+<div class="announcement">
+  <aside class="announcement-content">
+    
+<div class="splunk-masthead">
+  <div class="splunk-masthead__accent" aria-hidden="true"></div>
+  <nav class="splunk-masthead__inner" aria-label="Splunk developer documentation"><a class="splunk-masthead__wordmark" href="https://dev.splunk.com/">splunk&gt;</a>
+    <span class="splunk-masthead__divider" aria-hidden="true"></span>
+    <a class="splunk-masthead__product" href="index.html">Splunk SDK for Python</a>
+
+    <span class="splunk-masthead__spacer"></span>
+
+    <div class="splunk-masthead__right">
+      <div class="splunk-version">
+        <label class="splunk-version__label" for="splunk-version-select">Version</label>
+        <select
+          class="splunk-version__select"
+          id="splunk-version-select"
+          onchange="if(this.value)window.location.href=this.value;"
+        >
+          <option value="../latest/">3.0.1 (latest)</option>
+          <option value="../3.0.0/" selected>3.0.0</option>
+          <option value="../2.1.1/">2.1.1</option>
+          <option value="../2.1.0/">2.1.0</option>
+        </select>
+      </div>
+      <a class="splunk-masthead__portal-link" href="https://dev.splunk.com/enterprise/docs/devtools/python/sdk-python/">
+        Guides on dev.splunk.com
+      </a>
+    </div>
+  </nav>
+</div>
+<div class="splunk-version-banner">
+  You are viewing documentation for version <strong>3.0.0</strong>.
+  <a href="../latest/">Go to the latest version</a>.
+</div>
+
+  </aside>
+</div>
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Splunk SDK for Python API Reference</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">splunklib.binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="client.html">splunklib.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">splunklib.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="results.html">splunklib.results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modularinput.html">splunklib.modularinput</a></li>
+<li class="toctree-l1"><a class="reference internal" href="searchcommands.html">splunklib.searchcommands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="searchcommandsvalidators.html">splunklib.searchcommands.validators</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="_sources/binding.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="module-splunklib.binding">
+<span id="splunklib-binding"></span><h1>splunklib.binding<a class="headerlink" href="#module-splunklib.binding" title="Link to this heading">¶</a></h1>
+<p>The <strong>splunklib.binding</strong> module provides a low-level binding interface to the
+<a class="reference external" href="http://docs.splunk.com/Documentation/Splunk/latest/RESTAPI/RESTcontents">Splunk REST API</a>.</p>
+<p>This module handles the wire details of calling the REST API, such as
+authentication tokens, prefix paths, URL encoding, and so on. Actual path
+segments, <code class="docutils literal notranslate"><span class="pre">GET</span></code> and <code class="docutils literal notranslate"><span class="pre">POST</span></code> arguments, and the parsing of responses is left
+to the user.</p>
+<p>If you want a friendlier interface to the Splunk REST API, use the
+<a class="reference internal" href="client.html#module-splunklib.client" title="splunklib.client"><code class="xref py py-mod docutils literal notranslate"><span class="pre">splunklib.client</span></code></a> module.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="splunklib.binding.connect">
+<span class="sig-prename descclassname"><span class="pre">splunklib.binding.</span></span><span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.binding.connect" title="Link to this definition">¶</a></dt>
+<dd><p>This function returns an authenticated <a class="reference internal" href="#splunklib.binding.Context" title="splunklib.binding.Context"><code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code></a> object.</p>
+<p>This function is a shorthand for calling <a class="reference internal" href="#splunklib.binding.Context.login" title="splunklib.binding.Context.login"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Context.login()</span></code></a>.</p>
+<p>This function makes one round trip to the server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>host</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – The host name (the default is “localhost”).</p></li>
+<li><p><strong>port</strong> (<code class="docutils literal notranslate"><span class="pre">integer</span></code>) – The port number (the default is 8089).</p></li>
+<li><p><strong>scheme</strong> (<em>&quot;https&quot;</em><em> or </em><em>&quot;http&quot;</em>) – The scheme for accessing the service (the default is “https”).</p></li>
+<li><p><strong>owner</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – The owner context of the namespace (the default is “None”).</p></li>
+<li><p><strong>verify</strong> (<code class="docutils literal notranslate"><span class="pre">Boolean</span></code>) – Enable (True) or disable (False) SSL verification for https connections.</p></li>
+<li><p><strong>self_signed_certificate</strong> (<code class="docutils literal notranslate"><span class="pre">Boolean</span></code>) – Specifies if self signed certificate is used</p></li>
+<li><p><strong>key_file</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – Path to a PEM-encoded private key.</p></li>
+<li><p><strong>cert_file</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – Path to a PEM-encoded X509 certificate chain.</p></li>
+<li><p><strong>context</strong> (<code class="docutils literal notranslate"><span class="pre">SSLContext</span></code>) – Custom SSLContext used with the HTTPSConnection, requires verify=True.</p></li>
+<li><p><strong>app</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – The app context of the namespace (the default is “None”).</p></li>
+<li><p><strong>sharing</strong> (<em>&quot;global&quot;</em><em>, </em><em>&quot;system&quot;</em><em>, </em><em>&quot;app&quot;</em><em>, or </em><em>&quot;user&quot;</em>) – The sharing mode for the namespace (the default is “user”).</p></li>
+<li><p><strong>token</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – The current session token (optional). Session tokens can be
+shared across multiple service instances.</p></li>
+<li><p><strong>cookie</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – A session cookie. When provided, you don’t need to call <code class="xref py py-meth docutils literal notranslate"><span class="pre">login()</span></code>.
+This parameter is only supported for Splunk 6.2+.</p></li>
+<li><p><strong>username</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – The Splunk account username, which is used to
+authenticate the Splunk instance.</p></li>
+<li><p><strong>password</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – The password for the Splunk account.</p></li>
+<li><p><strong>headers</strong> (<code class="docutils literal notranslate"><span class="pre">list</span></code> of 2-tuples.) – List of extra HTTP headers to send (optional).</p></li>
+<li><p><strong>autologin</strong> (<code class="docutils literal notranslate"><span class="pre">Boolean</span></code>) – When <code class="docutils literal notranslate"><span class="pre">True</span></code>, automatically tries to log in again if the
+session terminates.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An initialized <a class="reference internal" href="#splunklib.binding.Context" title="splunklib.binding.Context"><code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code></a> instance.</p>
+</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">splunklib.binding</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">binding</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">binding</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"apps/local"</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splunklib.binding.handler">
+<span class="sig-prename descclassname"><span class="pre">splunklib.binding.</span></span><span class="sig-name descname"><span class="pre">handler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cert_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.binding.handler" title="Link to this definition">¶</a></dt>
+<dd><p>This class returns an instance of the default HTTP request handler using
+the values you provide.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>verify</strong> (<code class="docutils literal notranslate"><span class="pre">Boolean</span></code>) – Enable (True) or disable (False) SSL verification for https connections.</p></li>
+<li><p><strong>key_file</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – Path to a PEM-encoded private key.</p></li>
+<li><p><strong>cert_file</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – Path to a PEM-encoded X509 certificate chain.</p></li>
+<li><p><strong>context</strong> (<code class="docutils literal notranslate"><span class="pre">SSLContext</span></code>) – Custom SSLContext used with the HTTPSConnection, requires verify=True.</p></li>
+<li><p><strong>timeout</strong> (<code class="docutils literal notranslate"><span class="pre">integer</span></code> or “None”) – The request time-out period, in seconds (optional).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splunklib.binding.namespace">
+<span class="sig-prename descclassname"><span class="pre">splunklib.binding.</span></span><span class="sig-name descname"><span class="pre">namespace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sharing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">owner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.binding.namespace" title="Link to this definition">¶</a></dt>
+<dd><p>This function constructs a Splunk namespace.</p>
+<p>Every Splunk resource belongs to a namespace. The namespace is specified by
+the pair of values <code class="docutils literal notranslate"><span class="pre">owner</span></code> and <code class="docutils literal notranslate"><span class="pre">app</span></code> and is governed by a <code class="docutils literal notranslate"><span class="pre">sharing</span></code> mode.
+The possible values for <code class="docutils literal notranslate"><span class="pre">sharing</span></code> are: “user”, “app”, “global” and “system”,
+which map to the following combinations of <code class="docutils literal notranslate"><span class="pre">owner</span></code> and <code class="docutils literal notranslate"><span class="pre">app</span></code> values:</p>
+<blockquote>
+<div><p>“user”   =&gt; {owner}, {app}</p>
+<p>“app”    =&gt; nobody, {app}</p>
+<p>“global” =&gt; nobody, {app}</p>
+<p>“system” =&gt; nobody, system</p>
+</div></blockquote>
+<p>“nobody” is a special user name that basically means no user, and “system”
+is the name reserved for system resources.</p>
+<p>“-” is a wildcard that can be used for both <code class="docutils literal notranslate"><span class="pre">owner</span></code> and <code class="docutils literal notranslate"><span class="pre">app</span></code> values and
+refers to all users and all apps, respectively.</p>
+<p>In general, when you specify a namespace you can specify any combination of
+these three values and the library will reconcile the triple, overriding the
+provided values as appropriate.</p>
+<p>Finally, if no namespacing is specified the library will make use of the
+<code class="docutils literal notranslate"><span class="pre">/services</span></code> branch of the REST API, which provides a namespaced view of
+Splunk resources equivelent to using <code class="docutils literal notranslate"><span class="pre">owner={currentUser}</span></code> and
+<code class="docutils literal notranslate"><span class="pre">app={defaultApp}</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">namespace</span></code> function returns a representation of the namespace from
+reconciling the values you provide. It ignores any keyword arguments other
+than <code class="docutils literal notranslate"><span class="pre">owner</span></code>, <code class="docutils literal notranslate"><span class="pre">app</span></code>, and <code class="docutils literal notranslate"><span class="pre">sharing</span></code>, so you can provide <code class="docutils literal notranslate"><span class="pre">dicts</span></code> of
+configuration information without first having to extract individual keys.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sharing</strong> (<em>&quot;system&quot;</em><em>, </em><em>&quot;global&quot;</em><em>, </em><em>&quot;app&quot;</em><em>, or </em><em>&quot;user&quot;</em>) – The sharing mode (the default is “user”).</p></li>
+<li><p><strong>owner</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – The owner context (the default is “None”).</p></li>
+<li><p><strong>app</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – The app context (the default is “None”).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <a class="reference internal" href="data.html#splunklib.data.Record" title="splunklib.data.Record"><code class="xref py py-class docutils literal notranslate"><span class="pre">splunklib.data.Record</span></code></a> containing the reconciled
+namespace.</p>
+</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">splunklib.binding</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">binding</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="n">binding</span><span class="o">.</span><span class="n">namespace</span><span class="p">(</span><span class="n">sharing</span><span class="o">=</span><span class="s2">"user"</span><span class="p">,</span> <span class="n">owner</span><span class="o">=</span><span class="s2">"boris"</span><span class="p">,</span> <span class="n">app</span><span class="o">=</span><span class="s2">"search"</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">binding</span><span class="o">.</span><span class="n">namespace</span><span class="p">(</span><span class="n">sharing</span><span class="o">=</span><span class="s2">"global"</span><span class="p">,</span> <span class="n">app</span><span class="o">=</span><span class="s2">"search"</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.binding.AuthenticationError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">splunklib.binding.</span></span><span class="sig-name descname"><span class="pre">AuthenticationError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cause</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.binding.AuthenticationError" title="Link to this definition">¶</a></dt>
+<dd><p>Raised when a login request to Splunk fails.</p>
+<p>If your username was unknown or you provided an incorrect password
+in a call to <a class="reference internal" href="#splunklib.binding.Context.login" title="splunklib.binding.Context.login"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Context.login()</span></code></a> or <a class="reference internal" href="client.html#splunklib.client.Service.login" title="splunklib.client.Service.login"><code class="xref py py-meth docutils literal notranslate"><span class="pre">splunklib.client.Service.login()</span></code></a>,
+this exception is raised.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.binding.Context">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">splunklib.binding.</span></span><span class="sig-name descname"><span class="pre">Context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handler</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.binding.Context" title="Link to this definition">¶</a></dt>
+<dd><p>This class represents a context that encapsulates a splunkd connection.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Context</span></code> class encapsulates the details of HTTP requests,
+authentication, a default namespace, and URL prefixes to simplify access to
+the REST API.</p>
+<p>After creating a <code class="docutils literal notranslate"><span class="pre">Context</span></code> object, you must call its <a class="reference internal" href="#splunklib.binding.Context.login" title="splunklib.binding.Context.login"><code class="xref py py-meth docutils literal notranslate"><span class="pre">login()</span></code></a>
+method before you can issue requests to splunkd. Or, use the <a class="reference internal" href="#splunklib.binding.connect" title="splunklib.binding.connect"><code class="xref py py-func docutils literal notranslate"><span class="pre">connect()</span></code></a>
+function to create an already-authenticated <code class="docutils literal notranslate"><span class="pre">Context</span></code> object. You can
+provide a session token explicitly (the same token can be shared by multiple
+<code class="docutils literal notranslate"><span class="pre">Context</span></code> objects) to provide authentication.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>host</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – The host name (the default is “localhost”).</p></li>
+<li><p><strong>port</strong> (<code class="docutils literal notranslate"><span class="pre">integer</span></code>) – The port number (the default is 8089).</p></li>
+<li><p><strong>scheme</strong> (<em>&quot;https&quot;</em><em> or </em><em>&quot;http&quot;</em>) – The scheme for accessing the service (the default is “https”).</p></li>
+<li><p><strong>verify</strong> (<code class="docutils literal notranslate"><span class="pre">Boolean</span></code>) – Enable (True) or disable (False) SSL verification for https connections.</p></li>
+<li><p><strong>self_signed_certificate</strong> (<code class="docutils literal notranslate"><span class="pre">Boolean</span></code>) – Specifies if self signed certificate is used</p></li>
+<li><p><strong>key_file</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – Path to a PEM-encoded private key.</p></li>
+<li><p><strong>cert_file</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – Path to a PEM-encoded X509 certificate chain.</p></li>
+<li><p><strong>context</strong> (<code class="docutils literal notranslate"><span class="pre">SSLContext</span></code>) – Custom SSLContext used with the HTTPSConnection, requires verify=True.</p></li>
+<li><p><strong>sharing</strong> (<em>&quot;global&quot;</em><em>, </em><em>&quot;system&quot;</em><em>, </em><em>&quot;app&quot;</em><em>, or </em><em>&quot;user&quot;</em>) – The sharing mode for the namespace (the default is “user”).</p></li>
+<li><p><strong>owner</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – The owner context of the namespace (optional, the default is “None”).</p></li>
+<li><p><strong>app</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – The app context of the namespace (optional, the default is “None”).</p></li>
+<li><p><strong>token</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – A session token. When provided, you don’t need to call <a class="reference internal" href="#splunklib.binding.Context.login" title="splunklib.binding.Context.login"><code class="xref py py-meth docutils literal notranslate"><span class="pre">login()</span></code></a>.</p></li>
+<li><p><strong>cookie</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – A session cookie. When provided, you don’t need to call <a class="reference internal" href="#splunklib.binding.Context.login" title="splunklib.binding.Context.login"><code class="xref py py-meth docutils literal notranslate"><span class="pre">login()</span></code></a>.
+This parameter is only supported for Splunk 6.2+.</p></li>
+<li><p><strong>username</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – The Splunk account username, which is used to
+authenticate the Splunk instance.</p></li>
+<li><p><strong>password</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – The password for the Splunk account.</p></li>
+<li><p><strong>splunkToken</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – Splunk authentication token</p></li>
+<li><p><strong>headers</strong> (<code class="docutils literal notranslate"><span class="pre">list</span></code> of 2-tuples.) – List of extra HTTP headers to send (optional).</p></li>
+<li><p><strong>retries</strong> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) – Number of retries for each HTTP connection (optional, the default is 0).
+NOTE: THIS MAY INCREASE THE NUMBER OF ROUNDTRIP CONNECTIONS
+TO THE SPLUNK SERVER AND BLOCK THE CURRENT THREAD WHILE RETRYING.</p></li>
+<li><p><strong>retryDelay</strong> (<code class="docutils literal notranslate"><span class="pre">int</span></code> (in seconds)) – How long to wait between connection attempts if <cite>retries</cite> &gt; 0 (optional, defaults to 10s).</p></li>
+<li><p><strong>handler</strong> – The HTTP request handler (optional).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">Context</span></code> instance.</p>
+</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">splunklib.binding</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">binding</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">binding</span><span class="o">.</span><span class="n">Context</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s2">"boris"</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s2">"natasha"</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<span class="n">c</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
+<span class="c1"># Or equivalently</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">binding</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s2">"boris"</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s2">"natasha"</span><span class="p">)</span>
+<span class="c1"># Or if you already have a session token</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">binding</span><span class="o">.</span><span class="n">Context</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="s2">"atg232342aa34324a"</span><span class="p">)</span>
+<span class="c1"># Or if you already have a valid cookie</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">binding</span><span class="o">.</span><span class="n">Context</span><span class="p">(</span><span class="n">cookie</span><span class="o">=</span><span class="s2">"splunkd_8089=..."</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="splunklib.binding.Context.connect">
+<span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.binding.Context.connect" title="Link to this definition">¶</a></dt>
+<dd><p>Returns an open connection (socket) to the Splunk instance.</p>
+<p>This method is used for writing bulk events to an index or similar tasks
+where the overhead of opening a connection multiple times would be
+prohibitive.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A socket.</p>
+</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">splunklib.binding</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">binding</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">binding</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">socket</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">socket</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">"POST </span><span class="si">%s</span><span class="s2"> HTTP/1.1</span><span class="se">\r\n</span><span class="s2">"</span> <span class="o">%</span> <span class="s2">"some/path/to/post/to"</span><span class="p">)</span>
+<span class="n">socket</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">"Host: </span><span class="si">%s</span><span class="s2">:</span><span class="si">%s</span><span class="se">\r\n</span><span class="s2">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">port</span><span class="p">))</span>
+<span class="n">socket</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">"Accept-Encoding: identity</span><span class="se">\r\n</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">socket</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">"Authorization: </span><span class="si">%s</span><span class="se">\r\n</span><span class="s2">"</span> <span class="o">%</span> <span class="n">c</span><span class="o">.</span><span class="n">token</span><span class="p">)</span>
+<span class="n">socket</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">"X-Splunk-Input-Mode: Streaming</span><span class="se">\r\n</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">socket</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">"</span><span class="se">\r\n</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="splunklib.binding.Context.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_segment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">owner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sharing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">query</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.binding.Context.delete" title="Link to this definition">¶</a></dt>
+<dd><p>Performs a DELETE operation at the REST path segment with the given
+namespace and query.</p>
+<p>This method is named to match the HTTP method. <code class="docutils literal notranslate"><span class="pre">delete</span></code> makes at least
+one round trip to the server, one additional round trip for each 303
+status returned, and at most two additional round trips if
+the <code class="docutils literal notranslate"><span class="pre">autologin</span></code> field of <a class="reference internal" href="#splunklib.binding.connect" title="splunklib.binding.connect"><code class="xref py py-func docutils literal notranslate"><span class="pre">connect()</span></code></a> is set to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>If <em>owner</em>, <em>app</em>, and <em>sharing</em> are omitted, this method uses the
+default <a class="reference internal" href="#splunklib.binding.Context" title="splunklib.binding.Context"><code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code></a> namespace. All other keyword arguments are
+included in the URL as query parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#splunklib.binding.AuthenticationError" title="splunklib.binding.AuthenticationError"><strong>AuthenticationError</strong></a> – Raised when the <code class="docutils literal notranslate"><span class="pre">Context</span></code> object is not
+logged in.</p></li>
+<li><p><a class="reference internal" href="#splunklib.binding.HTTPError" title="splunklib.binding.HTTPError"><strong>HTTPError</strong></a> – Raised when an error occurred in a GET operation from
+<em>path_segment</em>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>path_segment</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – A REST path segment.</p></li>
+<li><p><strong>owner</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – The owner context of the namespace (optional).</p></li>
+<li><p><strong>app</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – The app context of the namespace (optional).</p></li>
+<li><p><strong>sharing</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – The sharing mode of the namespace (optional).</p></li>
+<li><p><strong>query</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – All other keyword arguments, which are used as query
+parameters.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The response from the server.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">dict</span></code> with keys <code class="docutils literal notranslate"><span class="pre">body</span></code>, <code class="docutils literal notranslate"><span class="pre">headers</span></code>, <code class="docutils literal notranslate"><span class="pre">reason</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">status</span></code></p>
+</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">binding</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">c</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s1">'saved/searches/boris'</span><span class="p">)</span> <span class="o">==</span> \
+    <span class="p">{</span><span class="s1">'body'</span><span class="p">:</span> <span class="o">...</span><span class="n">a</span> <span class="n">response</span> <span class="n">reader</span> <span class="nb">object</span><span class="o">...</span><span class="p">,</span>
+     <span class="s1">'headers'</span><span class="p">:</span> <span class="p">[(</span><span class="s1">'content-length'</span><span class="p">,</span> <span class="s1">'1786'</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">'expires'</span><span class="p">,</span> <span class="s1">'Fri, 30 Oct 1998 00:00:00 GMT'</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">'server'</span><span class="p">,</span> <span class="s1">'Splunkd'</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">'connection'</span><span class="p">,</span> <span class="s1">'close'</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">'cache-control'</span><span class="p">,</span> <span class="s1">'no-store, max-age=0, must-revalidate, no-cache'</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">'date'</span><span class="p">,</span> <span class="s1">'Fri, 11 May 2012 16:53:06 GMT'</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">'content-type'</span><span class="p">,</span> <span class="s1">'text/xml; charset=utf-8'</span><span class="p">)],</span>
+     <span class="s1">'reason'</span><span class="p">:</span> <span class="s1">'OK'</span><span class="p">,</span>
+     <span class="s1">'status'</span><span class="p">:</span> <span class="mi">200</span><span class="p">}</span>
+<span class="n">c</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s1">'nonexistant/path'</span><span class="p">)</span> <span class="c1"># raises HTTPError</span>
+<span class="n">c</span><span class="o">.</span><span class="n">logout</span><span class="p">()</span>
+<span class="n">c</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s1">'apps/local'</span><span class="p">)</span> <span class="c1"># raises AuthenticationError</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="splunklib.binding.Context.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_segment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">owner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sharing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">query</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.binding.Context.get" title="Link to this definition">¶</a></dt>
+<dd><p>Performs a GET operation from the REST path segment with the given
+namespace and query.</p>
+<p>This method is named to match the HTTP method. <code class="docutils literal notranslate"><span class="pre">get</span></code> makes at least
+one round trip to the server, one additional round trip for each 303
+status returned, and at most two additional round trips if
+the <code class="docutils literal notranslate"><span class="pre">autologin</span></code> field of <a class="reference internal" href="#splunklib.binding.connect" title="splunklib.binding.connect"><code class="xref py py-func docutils literal notranslate"><span class="pre">connect()</span></code></a> is set to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>If <em>owner</em>, <em>app</em>, and <em>sharing</em> are omitted, this method uses the
+default <a class="reference internal" href="#splunklib.binding.Context" title="splunklib.binding.Context"><code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code></a> namespace. All other keyword arguments are
+included in the URL as query parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#splunklib.binding.AuthenticationError" title="splunklib.binding.AuthenticationError"><strong>AuthenticationError</strong></a> – Raised when the <code class="docutils literal notranslate"><span class="pre">Context</span></code> object is not
+logged in.</p></li>
+<li><p><a class="reference internal" href="#splunklib.binding.HTTPError" title="splunklib.binding.HTTPError"><strong>HTTPError</strong></a> – Raised when an error occurred in a GET operation from
+<em>path_segment</em>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>path_segment</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – A REST path segment.</p></li>
+<li><p><strong>owner</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – The owner context of the namespace (optional).</p></li>
+<li><p><strong>app</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – The app context of the namespace (optional).</p></li>
+<li><p><strong>headers</strong> (<code class="docutils literal notranslate"><span class="pre">list</span></code> of 2-tuples.) – List of extra HTTP headers to send (optional).</p></li>
+<li><p><strong>sharing</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – The sharing mode of the namespace (optional).</p></li>
+<li><p><strong>query</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – All other keyword arguments, which are used as query
+parameters.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The response from the server.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">dict</span></code> with keys <code class="docutils literal notranslate"><span class="pre">body</span></code>, <code class="docutils literal notranslate"><span class="pre">headers</span></code>, <code class="docutils literal notranslate"><span class="pre">reason</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">status</span></code></p>
+</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">binding</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">c</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'apps/local'</span><span class="p">)</span> <span class="o">==</span> \
+    <span class="p">{</span><span class="s1">'body'</span><span class="p">:</span> <span class="o">...</span><span class="n">a</span> <span class="n">response</span> <span class="n">reader</span> <span class="nb">object</span><span class="o">...</span><span class="p">,</span>
+     <span class="s1">'headers'</span><span class="p">:</span> <span class="p">[(</span><span class="s1">'content-length'</span><span class="p">,</span> <span class="s1">'26208'</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">'expires'</span><span class="p">,</span> <span class="s1">'Fri, 30 Oct 1998 00:00:00 GMT'</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">'server'</span><span class="p">,</span> <span class="s1">'Splunkd'</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">'connection'</span><span class="p">,</span> <span class="s1">'close'</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">'cache-control'</span><span class="p">,</span> <span class="s1">'no-store, max-age=0, must-revalidate, no-cache'</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">'date'</span><span class="p">,</span> <span class="s1">'Fri, 11 May 2012 16:30:35 GMT'</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">'content-type'</span><span class="p">,</span> <span class="s1">'text/xml; charset=utf-8'</span><span class="p">)],</span>
+     <span class="s1">'reason'</span><span class="p">:</span> <span class="s1">'OK'</span><span class="p">,</span>
+     <span class="s1">'status'</span><span class="p">:</span> <span class="mi">200</span><span class="p">}</span>
+<span class="n">c</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'nonexistant/path'</span><span class="p">)</span> <span class="c1"># raises HTTPError</span>
+<span class="n">c</span><span class="o">.</span><span class="n">logout</span><span class="p">()</span>
+<span class="n">c</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'apps/local'</span><span class="p">)</span> <span class="c1"># raises AuthenticationError</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="splunklib.binding.Context.get_cookies">
+<span class="sig-name descname"><span class="pre">get_cookies</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.binding.Context.get_cookies" title="Link to this definition">¶</a></dt>
+<dd><p>Gets the dictionary of cookies from the <code class="docutils literal notranslate"><span class="pre">HttpLib</span></code> member of this instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dictionary of cookies stored on the <code class="docutils literal notranslate"><span class="pre">self.http</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">dict</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="splunklib.binding.Context.has_cookies">
+<span class="sig-name descname"><span class="pre">has_cookies</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.binding.Context.has_cookies" title="Link to this definition">¶</a></dt>
+<dd><p>Returns true if the <code class="docutils literal notranslate"><span class="pre">HttpLib</span></code> member of this instance has auth token stored.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if there is auth token present, else <code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="splunklib.binding.Context.login">
+<span class="sig-name descname"><span class="pre">login</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.binding.Context.login" title="Link to this definition">¶</a></dt>
+<dd><p>Logs into the Splunk instance referred to by the <a class="reference internal" href="#splunklib.binding.Context" title="splunklib.binding.Context"><code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code></a>
+object.</p>
+<p>Unless a <code class="docutils literal notranslate"><span class="pre">Context</span></code> is created with an explicit authentication token
+(probably obtained by logging in from a different <code class="docutils literal notranslate"><span class="pre">Context</span></code> object)
+you must call <a class="reference internal" href="#splunklib.binding.Context.login" title="splunklib.binding.Context.login"><code class="xref py py-meth docutils literal notranslate"><span class="pre">login()</span></code></a> before you can issue requests.
+The authentication token obtained from the server is stored in the
+<code class="docutils literal notranslate"><span class="pre">token</span></code> field of the <code class="docutils literal notranslate"><span class="pre">Context</span></code> object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#splunklib.binding.AuthenticationError" title="splunklib.binding.AuthenticationError"><strong>AuthenticationError</strong></a> – Raised when login fails.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The <code class="docutils literal notranslate"><span class="pre">Context</span></code> object, so you can chain calls.</p>
+</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">splunklib.binding</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">binding</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">binding</span><span class="o">.</span><span class="n">Context</span><span class="p">(</span><span class="o">...</span><span class="p">)</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
+<span class="c1"># Then issue requests...</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="splunklib.binding.Context.logout">
+<span class="sig-name descname"><span class="pre">logout</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.binding.Context.logout" title="Link to this definition">¶</a></dt>
+<dd><p>Forgets the current session token, and cookies.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="splunklib.binding.Context.post">
+<span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_segment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">owner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sharing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">query</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.binding.Context.post" title="Link to this definition">¶</a></dt>
+<dd><p>Performs a POST operation from the REST path segment with the given
+namespace and query.</p>
+<p>This method is named to match the HTTP method. <code class="docutils literal notranslate"><span class="pre">post</span></code> makes at least
+one round trip to the server, one additional round trip for each 303
+status returned, and at most two additional round trips if
+the <code class="docutils literal notranslate"><span class="pre">autologin</span></code> field of <a class="reference internal" href="#splunklib.binding.connect" title="splunklib.binding.connect"><code class="xref py py-func docutils literal notranslate"><span class="pre">connect()</span></code></a> is set to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>If <em>owner</em>, <em>app</em>, and <em>sharing</em> are omitted, this method uses the
+default <a class="reference internal" href="#splunklib.binding.Context" title="splunklib.binding.Context"><code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code></a> namespace. All other keyword arguments are
+included in the URL as query parameters.</p>
+<p>Some of Splunk’s endpoints, such as <code class="docutils literal notranslate"><span class="pre">receivers/simple</span></code> and
+<code class="docutils literal notranslate"><span class="pre">receivers/stream</span></code>, require unstructured data in the POST body
+and all metadata passed as GET-style arguments. If you provide
+a <code class="docutils literal notranslate"><span class="pre">body</span></code> argument to <code class="docutils literal notranslate"><span class="pre">post</span></code>, it will be used as the POST
+body, and all other keyword arguments will be passed as
+GET-style arguments in the URL.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#splunklib.binding.AuthenticationError" title="splunklib.binding.AuthenticationError"><strong>AuthenticationError</strong></a> – Raised when the <code class="docutils literal notranslate"><span class="pre">Context</span></code> object is not
+logged in.</p></li>
+<li><p><a class="reference internal" href="#splunklib.binding.HTTPError" title="splunklib.binding.HTTPError"><strong>HTTPError</strong></a> – Raised when an error occurred in a GET operation from
+<em>path_segment</em>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>path_segment</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – A REST path segment.</p></li>
+<li><p><strong>owner</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – The owner context of the namespace (optional).</p></li>
+<li><p><strong>app</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – The app context of the namespace (optional).</p></li>
+<li><p><strong>sharing</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – The sharing mode of the namespace (optional).</p></li>
+<li><p><strong>headers</strong> (<code class="docutils literal notranslate"><span class="pre">list</span></code> of 2-tuples.) – List of extra HTTP headers to send (optional).</p></li>
+<li><p><strong>query</strong> – All other keyword arguments, which are used as query
+parameters.</p></li>
+<li><p><strong>body</strong> (<code class="docutils literal notranslate"><span class="pre">dict</span></code> or <code class="docutils literal notranslate"><span class="pre">str</span></code>) – Parameters to be used in the post body. If specified,
+any parameters in the query will be applied to the URL instead of
+the body. If a dict is supplied, the key-value pairs will be form
+encoded. If a string is supplied, the body will be passed through
+in the request unchanged.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The response from the server.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">dict</span></code> with keys <code class="docutils literal notranslate"><span class="pre">body</span></code>, <code class="docutils literal notranslate"><span class="pre">headers</span></code>, <code class="docutils literal notranslate"><span class="pre">reason</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">status</span></code></p>
+</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">binding</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">c</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">'saved/searches'</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'boris'</span><span class="p">,</span>
+       <span class="n">search</span><span class="o">=</span><span class="s1">'search * earliest=-1m | head 1'</span><span class="p">)</span> <span class="o">==</span> \
+    <span class="p">{</span><span class="s1">'body'</span><span class="p">:</span> <span class="o">...</span><span class="n">a</span> <span class="n">response</span> <span class="n">reader</span> <span class="nb">object</span><span class="o">...</span><span class="p">,</span>
+     <span class="s1">'headers'</span><span class="p">:</span> <span class="p">[(</span><span class="s1">'content-length'</span><span class="p">,</span> <span class="s1">'10455'</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">'expires'</span><span class="p">,</span> <span class="s1">'Fri, 30 Oct 1998 00:00:00 GMT'</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">'server'</span><span class="p">,</span> <span class="s1">'Splunkd'</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">'connection'</span><span class="p">,</span> <span class="s1">'close'</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">'cache-control'</span><span class="p">,</span> <span class="s1">'no-store, max-age=0, must-revalidate, no-cache'</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">'date'</span><span class="p">,</span> <span class="s1">'Fri, 11 May 2012 16:46:06 GMT'</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">'content-type'</span><span class="p">,</span> <span class="s1">'text/xml; charset=utf-8'</span><span class="p">)],</span>
+     <span class="s1">'reason'</span><span class="p">:</span> <span class="s1">'Created'</span><span class="p">,</span>
+     <span class="s1">'status'</span><span class="p">:</span> <span class="mi">201</span><span class="p">}</span>
+<span class="n">c</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">'nonexistant/path'</span><span class="p">)</span> <span class="c1"># raises HTTPError</span>
+<span class="n">c</span><span class="o">.</span><span class="n">logout</span><span class="p">()</span>
+<span class="c1"># raises AuthenticationError:</span>
+<span class="n">c</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">'saved/searches'</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'boris'</span><span class="p">,</span>
+       <span class="n">search</span><span class="o">=</span><span class="s1">'search * earliest=-1m | head 1'</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="splunklib.binding.Context.request">
+<span class="sig-name descname"><span class="pre">request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_segment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'GET'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">owner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sharing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.binding.Context.request" title="Link to this definition">¶</a></dt>
+<dd><p>Issues an arbitrary HTTP request to the REST path segment.</p>
+<p>This method is named to match <code class="docutils literal notranslate"><span class="pre">httplib.request</span></code>. This function
+makes a single round trip to the server.</p>
+<p>If <em>owner</em>, <em>app</em>, and <em>sharing</em> are omitted, this method uses the
+default <a class="reference internal" href="#splunklib.binding.Context" title="splunklib.binding.Context"><code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code></a> namespace. All other keyword arguments are
+included in the URL as query parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#splunklib.binding.AuthenticationError" title="splunklib.binding.AuthenticationError"><strong>AuthenticationError</strong></a> – Raised when the <code class="docutils literal notranslate"><span class="pre">Context</span></code> object is not
+logged in.</p></li>
+<li><p><a class="reference internal" href="#splunklib.binding.HTTPError" title="splunklib.binding.HTTPError"><strong>HTTPError</strong></a> – Raised when an error occurred in a GET operation from
+<em>path_segment</em>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>path_segment</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – A REST path segment.</p></li>
+<li><p><strong>method</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – The HTTP method to use (optional).</p></li>
+<li><p><strong>headers</strong> (<code class="docutils literal notranslate"><span class="pre">list</span></code> of 2-tuples.) – List of extra HTTP headers to send (optional).</p></li>
+<li><p><strong>body</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – Content of the HTTP request (optional).</p></li>
+<li><p><strong>owner</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – The owner context of the namespace (optional).</p></li>
+<li><p><strong>app</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – The app context of the namespace (optional).</p></li>
+<li><p><strong>sharing</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – The sharing mode of the namespace (optional).</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The response from the server.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">dict</span></code> with keys <code class="docutils literal notranslate"><span class="pre">body</span></code>, <code class="docutils literal notranslate"><span class="pre">headers</span></code>, <code class="docutils literal notranslate"><span class="pre">reason</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">status</span></code></p>
+</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">binding</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">c</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">'saved/searches'</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">'GET'</span><span class="p">)</span> <span class="o">==</span> \
+    <span class="p">{</span><span class="s1">'body'</span><span class="p">:</span> <span class="o">...</span><span class="n">a</span> <span class="n">response</span> <span class="n">reader</span> <span class="nb">object</span><span class="o">...</span><span class="p">,</span>
+     <span class="s1">'headers'</span><span class="p">:</span> <span class="p">[(</span><span class="s1">'content-length'</span><span class="p">,</span> <span class="s1">'46722'</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">'expires'</span><span class="p">,</span> <span class="s1">'Fri, 30 Oct 1998 00:00:00 GMT'</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">'server'</span><span class="p">,</span> <span class="s1">'Splunkd'</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">'connection'</span><span class="p">,</span> <span class="s1">'close'</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">'cache-control'</span><span class="p">,</span> <span class="s1">'no-store, max-age=0, must-revalidate, no-cache'</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">'date'</span><span class="p">,</span> <span class="s1">'Fri, 11 May 2012 17:24:19 GMT'</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">'content-type'</span><span class="p">,</span> <span class="s1">'text/xml; charset=utf-8'</span><span class="p">)],</span>
+     <span class="s1">'reason'</span><span class="p">:</span> <span class="s1">'OK'</span><span class="p">,</span>
+     <span class="s1">'status'</span><span class="p">:</span> <span class="mi">200</span><span class="p">}</span>
+<span class="n">c</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">'nonexistant/path'</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">'GET'</span><span class="p">)</span> <span class="c1"># raises HTTPError</span>
+<span class="n">c</span><span class="o">.</span><span class="n">logout</span><span class="p">()</span>
+<span class="n">c</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'apps/local'</span><span class="p">)</span> <span class="c1"># raises AuthenticationError</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.binding.HTTPError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">splunklib.binding.</span></span><span class="sig-name descname"><span class="pre">HTTPError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.binding.HTTPError" title="Link to this definition">¶</a></dt>
+<dd><p>This exception is raised for HTTP responses that return an error.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.binding.HttpLib">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">splunklib.binding.</span></span><span class="sig-name descname"><span class="pre">HttpLib</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">custom_handler</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cert_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retryDelay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.binding.HttpLib" title="Link to this definition">¶</a></dt>
+<dd><p>A set of convenient methods for making HTTP calls.</p>
+<p><code class="docutils literal notranslate"><span class="pre">HttpLib</span></code> provides a general <a class="reference internal" href="#splunklib.binding.HttpLib.request" title="splunklib.binding.HttpLib.request"><code class="xref py py-meth docutils literal notranslate"><span class="pre">request()</span></code></a> method, and <a class="reference internal" href="#splunklib.binding.HttpLib.delete" title="splunklib.binding.HttpLib.delete"><code class="xref py py-meth docutils literal notranslate"><span class="pre">delete()</span></code></a>,
+<a class="reference internal" href="#splunklib.binding.HttpLib.post" title="splunklib.binding.HttpLib.post"><code class="xref py py-meth docutils literal notranslate"><span class="pre">post()</span></code></a>, and <a class="reference internal" href="#splunklib.binding.HttpLib.get" title="splunklib.binding.HttpLib.get"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get()</span></code></a> methods for the three HTTP methods that Splunk
+uses.</p>
+<p>By default, <code class="docutils literal notranslate"><span class="pre">HttpLib</span></code> uses Python’s built-in <code class="docutils literal notranslate"><span class="pre">httplib</span></code> library,
+but you can replace it by passing your own handling function to the
+constructor for <code class="docutils literal notranslate"><span class="pre">HttpLib</span></code>.</p>
+<p>The handling function should have the type:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">handler(`url`,</span> <span class="pre">`request_dict`)</span> <span class="pre">-&gt;</span> <span class="pre">response_dict</span></code></p>
+</div></blockquote>
+<p>where <cite>url</cite> is the URL to make the request to (including any query and
+fragment sections) as a dictionary with the following keys:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>method: The method for the request, typically <code class="docutils literal notranslate"><span class="pre">GET</span></code>, <code class="docutils literal notranslate"><span class="pre">POST</span></code>, or <code class="docutils literal notranslate"><span class="pre">DELETE</span></code>.</p></li>
+<li><p>headers: A list of pairs specifying the HTTP headers (for example: <code class="docutils literal notranslate"><span class="pre">[('key':</span> <span class="pre">value),</span> <span class="pre">...]</span></code>).</p></li>
+<li><p>body: A string containing the body to send with the request (this string
+should default to ‘’).</p></li>
+</ul>
+</div></blockquote>
+<p>and <code class="docutils literal notranslate"><span class="pre">response_dict</span></code> is a dictionary with the following keys:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>status: An integer containing the HTTP status code (such as 200 or 404).</p></li>
+<li><p>reason: The reason phrase, if any, returned by the server.</p></li>
+<li><p>headers: A list of pairs containing the response headers (for example, <code class="docutils literal notranslate"><span class="pre">[('key':</span> <span class="pre">value),</span> <span class="pre">...]</span></code>).</p></li>
+<li><p>body: A stream-like object supporting <code class="docutils literal notranslate"><span class="pre">read(size=None)</span></code> and <code class="docutils literal notranslate"><span class="pre">close()</span></code>
+methods to get the body of the response.</p></li>
+</ul>
+</div></blockquote>
+<p>The response dictionary is returned directly by <code class="docutils literal notranslate"><span class="pre">HttpLib</span></code>’s methods with
+no further processing. By default, <code class="docutils literal notranslate"><span class="pre">HttpLib</span></code> calls the <a class="reference internal" href="#splunklib.binding.handler" title="splunklib.binding.handler"><code class="xref py py-func docutils literal notranslate"><span class="pre">handler()</span></code></a> function
+to get a handler function.</p>
+<p>If using the default handler, SSL verification can be disabled by passing verify=False.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="splunklib.binding.HttpLib.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.binding.HttpLib.delete" title="Link to this definition">¶</a></dt>
+<dd><p>Sends a DELETE request to a URL.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – The URL.</p></li>
+<li><p><strong>headers</strong> (<code class="docutils literal notranslate"><span class="pre">list</span></code>) – A list of pairs specifying the headers for the HTTP
+response (for example, <code class="docutils literal notranslate"><span class="pre">[('Content-Type':</span> <span class="pre">'text/cthulhu'),</span> <span class="pre">('Token':</span> <span class="pre">'boris')]</span></code>).</p></li>
+<li><p><strong>kwargs</strong> (<code class="docutils literal notranslate"><span class="pre">dict</span></code>) – Additional keyword arguments (optional). These arguments
+are interpreted as the query part of the URL. The order of keyword
+arguments is not preserved in the request, but the keywords and
+their arguments will be URL encoded.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary describing the response (see <a class="reference internal" href="#splunklib.binding.HttpLib" title="splunklib.binding.HttpLib"><code class="xref py py-class docutils literal notranslate"><span class="pre">HttpLib</span></code></a> for
+its structure).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">dict</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="splunklib.binding.HttpLib.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.binding.HttpLib.get" title="Link to this definition">¶</a></dt>
+<dd><p>Sends a GET request to a URL.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – The URL.</p></li>
+<li><p><strong>headers</strong> (<code class="docutils literal notranslate"><span class="pre">list</span></code>) – A list of pairs specifying the headers for the HTTP
+response (for example, <code class="docutils literal notranslate"><span class="pre">[('Content-Type':</span> <span class="pre">'text/cthulhu'),</span> <span class="pre">('Token':</span> <span class="pre">'boris')]</span></code>).</p></li>
+<li><p><strong>kwargs</strong> (<code class="docutils literal notranslate"><span class="pre">dict</span></code>) – Additional keyword arguments (optional). These arguments
+are interpreted as the query part of the URL. The order of keyword
+arguments is not preserved in the request, but the keywords and
+their arguments will be URL encoded.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary describing the response (see <a class="reference internal" href="#splunklib.binding.HttpLib" title="splunklib.binding.HttpLib"><code class="xref py py-class docutils literal notranslate"><span class="pre">HttpLib</span></code></a> for
+its structure).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">dict</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="splunklib.binding.HttpLib.post">
+<span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.binding.HttpLib.post" title="Link to this definition">¶</a></dt>
+<dd><p>Sends a POST request to a URL.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – The URL.</p></li>
+<li><p><strong>headers</strong> (<code class="docutils literal notranslate"><span class="pre">list</span></code>) – A list of pairs specifying the headers for the HTTP
+response (for example, <code class="docutils literal notranslate"><span class="pre">[('Content-Type':</span> <span class="pre">'text/cthulhu'),</span> <span class="pre">('Token':</span> <span class="pre">'boris')]</span></code>).</p></li>
+<li><p><strong>kwargs</strong> (<code class="docutils literal notranslate"><span class="pre">dict</span></code>) – Additional keyword arguments (optional). If the argument
+is <code class="docutils literal notranslate"><span class="pre">body</span></code>, the value is used as the body for the request, and the
+keywords and their arguments will be URL encoded. If there is no
+<code class="docutils literal notranslate"><span class="pre">body</span></code> keyword argument, all the keyword arguments are encoded
+into the body of the request in the format <code class="docutils literal notranslate"><span class="pre">x-www-form-urlencoded</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary describing the response (see <a class="reference internal" href="#splunklib.binding.HttpLib" title="splunklib.binding.HttpLib"><code class="xref py py-class docutils literal notranslate"><span class="pre">HttpLib</span></code></a> for
+its structure).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">dict</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="splunklib.binding.HttpLib.request">
+<span class="sig-name descname"><span class="pre">request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.binding.HttpLib.request" title="Link to this definition">¶</a></dt>
+<dd><p>Issues an HTTP request to a URL.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url</strong> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) – The URL.</p></li>
+<li><p><strong>message</strong> (<code class="docutils literal notranslate"><span class="pre">dict</span></code>) – A dictionary with the format as described in
+<a class="reference internal" href="#splunklib.binding.HttpLib" title="splunklib.binding.HttpLib"><code class="xref py py-class docutils literal notranslate"><span class="pre">HttpLib</span></code></a>.</p></li>
+<li><p><strong>kwargs</strong> (<code class="docutils literal notranslate"><span class="pre">dict</span></code>) – Additional keyword arguments (optional). These arguments
+are passed unchanged to the handler.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary describing the response (see <a class="reference internal" href="#splunklib.binding.HttpLib" title="splunklib.binding.HttpLib"><code class="xref py py-class docutils literal notranslate"><span class="pre">HttpLib</span></code></a> for
+its structure).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">dict</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.binding.ResponseReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">splunklib.binding.</span></span><span class="sig-name descname"><span class="pre">ResponseReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.binding.ResponseReader" title="Link to this definition">¶</a></dt>
+<dd><p>This class provides a file-like interface for <code class="xref py py-class docutils literal notranslate"><span class="pre">httplib</span></code> responses.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ResponseReader</span></code> class is intended to be a layer to unify the different
+types of HTTP libraries used with this SDK. This class also provides a
+preview of the stream and a few useful predicates.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="splunklib.binding.ResponseReader.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.binding.ResponseReader.close" title="Link to this definition">¶</a></dt>
+<dd><p>Closes this response.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="splunklib.binding.ResponseReader.empty">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">empty</span></span><a class="headerlink" href="#splunklib.binding.ResponseReader.empty" title="Link to this definition">¶</a></dt>
+<dd><p>Indicates whether there is any more data in the response.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="splunklib.binding.ResponseReader.peek">
+<span class="sig-name descname"><span class="pre">peek</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.binding.ResponseReader.peek" title="Link to this definition">¶</a></dt>
+<dd><p>Nondestructively retrieves a given number of characters.</p>
+<p>The next <a class="reference internal" href="#splunklib.binding.ResponseReader.read" title="splunklib.binding.ResponseReader.read"><code class="xref py py-meth docutils literal notranslate"><span class="pre">read()</span></code></a> operation behaves as though this method was never
+called.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>size</strong> (<code class="docutils literal notranslate"><span class="pre">integer</span></code>) – The number of characters to retrieve.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="splunklib.binding.ResponseReader.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.binding.ResponseReader.read" title="Link to this definition">¶</a></dt>
+<dd><p>Reads a given number of characters from the response.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>size</strong> (<code class="docutils literal notranslate"><span class="pre">integer</span></code> or “None”) – The number of characters to read, or “None” to read the
+entire response.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="client.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">splunklib.client</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Home</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2011-2026 Splunk, Inc.
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">splunklib.binding</a><ul>
+<li><a class="reference internal" href="#splunklib.binding.connect"><code class="docutils literal notranslate"><span class="pre">connect()</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.binding.handler"><code class="docutils literal notranslate"><span class="pre">handler()</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.binding.namespace"><code class="docutils literal notranslate"><span class="pre">namespace()</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.binding.AuthenticationError"><code class="docutils literal notranslate"><span class="pre">AuthenticationError</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.binding.Context"><code class="docutils literal notranslate"><span class="pre">Context</span></code></a><ul>
+<li><a class="reference internal" href="#splunklib.binding.Context.connect"><code class="docutils literal notranslate"><span class="pre">Context.connect()</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.binding.Context.delete"><code class="docutils literal notranslate"><span class="pre">Context.delete()</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.binding.Context.get"><code class="docutils literal notranslate"><span class="pre">Context.get()</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.binding.Context.get_cookies"><code class="docutils literal notranslate"><span class="pre">Context.get_cookies()</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.binding.Context.has_cookies"><code class="docutils literal notranslate"><span class="pre">Context.has_cookies()</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.binding.Context.login"><code class="docutils literal notranslate"><span class="pre">Context.login()</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.binding.Context.logout"><code class="docutils literal notranslate"><span class="pre">Context.logout()</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.binding.Context.post"><code class="docutils literal notranslate"><span class="pre">Context.post()</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.binding.Context.request"><code class="docutils literal notranslate"><span class="pre">Context.request()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#splunklib.binding.HTTPError"><code class="docutils literal notranslate"><span class="pre">HTTPError</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.binding.HttpLib"><code class="docutils literal notranslate"><span class="pre">HttpLib</span></code></a><ul>
+<li><a class="reference internal" href="#splunklib.binding.HttpLib.delete"><code class="docutils literal notranslate"><span class="pre">HttpLib.delete()</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.binding.HttpLib.get"><code class="docutils literal notranslate"><span class="pre">HttpLib.get()</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.binding.HttpLib.post"><code class="docutils literal notranslate"><span class="pre">HttpLib.post()</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.binding.HttpLib.request"><code class="docutils literal notranslate"><span class="pre">HttpLib.request()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#splunklib.binding.ResponseReader"><code class="docutils literal notranslate"><span class="pre">ResponseReader</span></code></a><ul>
+<li><a class="reference internal" href="#splunklib.binding.ResponseReader.close"><code class="docutils literal notranslate"><span class="pre">ResponseReader.close()</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.binding.ResponseReader.empty"><code class="docutils literal notranslate"><span class="pre">ResponseReader.empty</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.binding.ResponseReader.peek"><code class="docutils literal notranslate"><span class="pre">ResponseReader.peek()</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.binding.ResponseReader.read"><code class="docutils literal notranslate"><span class="pre">ResponseReader.read()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=acc74ff5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=46bd48cc"></script>
+    </body>
+</html>
