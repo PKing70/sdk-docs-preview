@@ -1,0 +1,254 @@
+/* ============================================================================
+   Splunk SDK reference — JavaDoc theme overlay
+   ----------------------------------------------------------------------------
+   Layered additively via javadoc's `--add-stylesheet` (JDK 10+), so JavaDoc's
+   own stylesheet.css is left intact and JDK upgrades stay safe.
+
+   REQUIRES a modern JDK for doc generation. JDK 21 javadoc builds its
+   stylesheet on 34 CSS custom properties, which is what makes this remap
+   possible. JDK 8 javadoc (what splunk-sdk-java's release.yml currently pins
+   via `actions/setup-java@v1 java-version: 1.8`) emits a frameset and a fixed
+   stylesheet with no custom properties, and cannot be restyled this way.
+
+   Token values are identical to the Sphinx overlay (poc-python-sdk/theme/
+   splunk-theme.css): @splunk/themes v1.12 at family="prisma",
+   density="comfortable" — the configuration dev.splunk.com uses.
+   ========================================================================== */
+
+:root {
+  /* ---- Splunk brand (src/styles/CustomColors.ts) ---- */
+  --splunk-orange: #f99d1c;
+  --splunk-orange-dark: #f05a22;
+  --splunk-pink: #ee1d62;
+  --splunk-pink-dark: #ed0080;
+  --splunk-logo-gradient: linear-gradient(
+    90deg, #f99d1c 0%, #f99d1c 10%, #f4781f 30%, #f16221 43%,
+    #f05a22 58%, #ee1d62 76%, #ed0080 100%
+  );
+  --splunk-content-width: 67.75rem; /* LAYOUT_MAX_WIDTH_PX */
+  --splunk-header-height: 56px;
+
+  /* ---- Remap JavaDoc's own tokens onto Splunk values ---- */
+
+  /* Typography. Note JavaDoc defaults --block-font-family to a SERIF
+     ('DejaVu Serif'), which is the single largest visual divergence from the
+     Sphinx output. Unifying it is most of the "look like siblings" win. */
+  --body-font-family: "Splunk Platform Sans", "Splunk Data Sans", Roboto, Droid,
+    "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --block-font-family: var(--body-font-family);
+  --code-font-family: "Splunk Platform Mono", "Roboto Mono", Consolas,
+    "Droid Sans Mono", Monaco, "Courier New", Courier, monospace;
+  --body-font-size: 15px; /* matches the Sphinx overlay's 0.9375rem */
+  --code-font-size: 14px;
+
+  /* Text */
+  --body-text-color: #2c2c2c; /* contentColorActive */
+  --block-text-color: #4d4d4d; /* contentColorDefault */
+  --title-color: #2c2c2c;
+
+  /* Surfaces */
+  --body-background-color: #ffffff; /* backgroundColorSection */
+  --section-background-color: #f9f9f9; /* backgroundColorPage */
+  --detail-background-color: #ffffff;
+
+  /* Navigation. JavaDoc's default navbar is a saturated slate blue
+     (#4D7A97) that reads as neither Splunk nor neutral; flattened to the
+     portal's surface colors so the Splunk masthead above it is the only
+     chrome carrying brand color. */
+  --navbar-background-color: #ffffff;
+  --navbar-text-color: #2c2c2c;
+  --subnav-background-color: #f9f9f9;
+
+  /* Selected states — Splunk orange, replacing JavaDoc's #f8981d */
+  --selected-background-color: var(--splunk-orange);
+  --selected-text-color: #2c2c2c;
+  --selected-link-color: #0264d7;
+
+  /* Tables */
+  --even-row-color: #ffffff;
+  --odd-row-color: #f9f9f9;
+  --border-color: #e3e3e3;
+  --table-border-color: #e3e3e3;
+
+  /* Links — linkColor / hover */
+  --link-color: #0264d7;
+  --link-color-active: #014ea8;
+
+  /* Snippets */
+  --snippet-background-color: #f4f4f5;
+  --snippet-text-color: #2c2c2c;
+  --snippet-highlight-color: rgba(249, 157, 28, 0.35);
+
+  /* Search */
+  --search-input-background-color: #ffffff;
+  --search-input-text-color: #2c2c2c;
+  --search-input-placeholder-color: #6b6b6b;
+  --search-tag-highlight-color: rgba(249, 157, 28, 0.35);
+}
+
+/* ---- A few structural softenings JavaDoc hardcodes outside its tokens ---- */
+
+/* JavaDoc sets a hard 1px solid border on the nav; align it to the token */
+.top-nav,
+.sub-nav {
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Constrain measure to the portal's content width; JavaDoc is full-bleed */
+.flex-content,
+.header,
+.content-container,
+main[role="main"] {
+  max-width: var(--splunk-content-width);
+}
+
+/* Match the portal's 4px borderRadius token */
+.search-input,
+.snippet-container,
+.summary-table,
+.details-table {
+  border-radius: 4px;
+}
+
+/* JavaDoc member signatures sit flush; give them the breathing room the
+   Sphinx API blocks have */
+.member-signature {
+  padding: 0.375rem 0;
+}
+
+/* ============================================================================
+   Splunk masthead — identical markup and classes to the Sphinx overlay.
+   Injected per page via javadoc's `-top` option, so the two generators
+   produce the same chrome from the same CSS.
+   ========================================================================== */
+
+.splunk-masthead {
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-color);
+  font-family: var(--body-font-family);
+}
+.splunk-masthead__accent {
+  height: 3px;
+  background: var(--splunk-logo-gradient);
+}
+.splunk-masthead__inner {
+  max-width: var(--splunk-content-width);
+  margin: 0 auto;
+  height: var(--splunk-header-height);
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+  overflow: hidden;
+}
+.splunk-masthead__wordmark {
+  font-weight: 700;
+  font-size: 1.125rem;
+  letter-spacing: -0.02em;
+  background: var(--splunk-logo-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+  flex: none;
+}
+.splunk-masthead__divider {
+  width: 1px;
+  height: 20px;
+  background: var(--border-color);
+  flex: none;
+}
+/* NOTE on specificity: JavaDoc colors links with `a[href]` — an attribute
+   selector at (0,1,1) — which outranks a bare class at (0,1,0). Masthead
+   anchors therefore have to match the attribute selector too, or they come
+   out link-blue. This bit the product name and the wordmark. */
+a[href].splunk-masthead__product {
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: var(--body-text-color);
+  text-decoration: none;
+  /* shrinkable with ellipsis: this item absorbs narrow widths. Previously
+     every masthead child was `flex: none`, which overflowed the page below
+     ~900px and produced a horizontal scrollbar. */
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+a[href].splunk-masthead__product:hover { color: var(--link-color); }
+
+a[href].splunk-masthead__wordmark {
+  /* re-assert gradient fill over JavaDoc's a[href] color rule */
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.splunk-masthead__spacer { flex: 1 1 auto; }
+.splunk-masthead__right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: none;
+}
+.splunk-version { display: flex; align-items: center; gap: 0.375rem; }
+.splunk-version__label {
+  font-size: 0.8125rem;
+  color: #6b6b6b;
+}
+.splunk-version__select {
+  font-family: var(--body-font-family);
+  font-size: 0.8125rem;
+  color: var(--body-text-color);
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 0.25rem 1.5rem 0.25rem 0.5rem;
+  cursor: pointer;
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: calc(100% - 13px) 50%, calc(100% - 8px) 50%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+.splunk-version__select:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: 1px;
+}
+.splunk-masthead__portal-link {
+  font-size: 0.8125rem;
+  color: var(--link-color);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.splunk-masthead__portal-link:hover { text-decoration: underline; }
+
+.splunk-version-banner {
+  max-width: var(--splunk-content-width);
+  margin: 1rem auto 0;
+  padding: 0.625rem 1rem;
+  border-left: 3px solid var(--splunk-orange);
+  background: rgba(249, 157, 28, 0.1);
+  font-size: 0.875rem;
+  color: var(--block-text-color);
+  border-radius: 0 4px 4px 0;
+  font-family: var(--body-font-family);
+}
+
+/* Shed masthead items in priority order as width shrinks so nothing
+   overflows: portal link first, then the "Version" label, then the product
+   name and divider. Wordmark and version selector always survive. */
+@media (max-width: 62em) {
+  .splunk-masthead__portal-link,
+  a[href].splunk-masthead__portal-link { display: none; }
+}
+@media (max-width: 48em) {
+  .splunk-version__label { display: none; }
+}
+@media (max-width: 30em) {
+  .splunk-masthead__product,
+  a[href].splunk-masthead__product,
+  .splunk-masthead__divider { display: none; }
+}

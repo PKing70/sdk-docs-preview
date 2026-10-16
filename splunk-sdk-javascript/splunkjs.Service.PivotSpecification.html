@@ -1,0 +1,3167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Class: PivotSpecification &middot; Splunk SDK for JavaScript</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <!-- Splunk overlay loads last so it wins on equal specificity -->
+    <link type="text/css" rel="stylesheet" href="splunk-jsdoc.css">
+</head>
+
+<body>
+
+<div class="splunk-masthead">
+  <div class="splunk-masthead__accent" aria-hidden="true"></div>
+  <nav class="splunk-masthead__inner" aria-label="Splunk developer documentation">
+    <!-- TODO swap for the licensed Splunk logo asset; text wordmark is a placeholder -->
+    <a class="splunk-masthead__wordmark" href="https://dev.splunk.com/">splunk&gt;</a>
+    <span class="splunk-masthead__divider" aria-hidden="true"></span>
+    <a class="splunk-masthead__product" href="index.html">Splunk SDK for JavaScript</a>
+
+    <span class="splunk-masthead__spacer"></span>
+
+    <div class="splunk-masthead__right">
+      
+      <div class="splunk-version">
+        <label class="splunk-version__label" for="splunk-version-select">Version</label>
+        <select class="splunk-version__select" id="splunk-version-select"
+                onchange="if(this.value)window.location.href=this.value;">
+          
+          <option value="https://splunk.github.io/splunk-sdk-javascript/latest/" selected>2.0.2 (latest)</option>
+          
+          <option value="https://splunk.github.io/splunk-sdk-javascript/1.12.0/">1.12.0</option>
+          
+          <option value="https://splunk.github.io/splunk-sdk-javascript/1.11.0/">1.11.0</option>
+          
+        </select>
+      </div>
+      
+      <a class="splunk-masthead__portal-link" href="https://dev.splunk.com/enterprise/docs/devtools/javascript/sdk-javascript/">Guides on dev.splunk.com</a>
+    </div>
+  </nav>
+</div>
+
+
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="splunkjs.module_Logger.html">Logger</a></li><li><a href="splunkjs.module_Utils.html">Utils</a></li></ul><h3>Namespaces</h3><ul><li><a href="splunkjs.html">splunkjs</a></li><li><a href="splunkjs.private.html">private</a></li></ul><h3>Classes</h3><ul><li><a href="splunkjs.Context.html">Context</a></li><li><a href="splunkjs.html#.Http">Http</a></li><li><a href="splunkjs.Service.html">Service</a></li><li><a href="splunkjs.Service.Application.html">Application</a></li><li><a href="splunkjs.Service.Applications.html">Applications</a></li><li><a href="splunkjs.Service.Collection.html">Collection</a></li><li><a href="splunkjs.Service.ConfigurationFile.html">ConfigurationFile</a></li><li><a href="splunkjs.Service.ConfigurationStanza.html">ConfigurationStanza</a></li><li><a href="splunkjs.Service.Configurations.html">Configurations</a></li><li><a href="splunkjs.Service.DataModel.html">DataModel</a></li><li><a href="splunkjs.Service.DataModelCalculation.html">DataModelCalculation</a></li><li><a href="splunkjs.Service.DataModelConstraint.html">DataModelConstraint</a></li><li><a href="splunkjs.Service.DataModelField.html">DataModelField</a></li><li><a href="splunkjs.Service.DataModelObject.html">DataModelObject</a></li><li><a href="splunkjs.Service.DataModels.html">DataModels</a></li><li><a href="splunkjs.Service.DataModels.instantiateEntity.html">instantiateEntity</a></li><li><a href="splunkjs.Service.Endpoint.html">Endpoint</a></li><li><a href="splunkjs.Service.Entity.html">Entity</a></li><li><a href="splunkjs.Service.FiredAlert.html">FiredAlert</a></li><li><a href="splunkjs.Service.FiredAlertGroup.html">FiredAlertGroup</a></li><li><a href="splunkjs.Service.FiredAlertGroupCollection.html">FiredAlertGroupCollection</a></li><li><a href="splunkjs.Service.Index.html">Index</a></li><li><a href="splunkjs.Service.Indexes.html">Indexes</a></li><li><a href="splunkjs.Service.Job.html">Job</a></li><li><a href="splunkjs.Service.Jobs.html">Jobs</a></li><li><a href="splunkjs.Service.Pivot.html">Pivot</a></li><li><a href="splunkjs.Service.PivotSpecification.html">PivotSpecification</a></li><li><a href="splunkjs.Service.Resource.html">Resource</a></li><li><a href="splunkjs.Service.SavedSearch.html">SavedSearch</a></li><li><a href="splunkjs.Service.SavedSearches.html">SavedSearches</a></li><li><a href="splunkjs.Service.ServerInfo.html">ServerInfo</a></li><li><a href="splunkjs.Service.StoragePassword.html">StoragePassword</a></li><li><a href="splunkjs.Service.StoragePasswords.html">StoragePasswords</a></li><li><a href="splunkjs.Service.User.html">User</a></li><li><a href="splunkjs.Service.Users.html">Users</a></li><li><a href="splunkjs.Service.View.html">View</a></li><li><a href="splunkjs.Service.Views.html">Views</a></li><li><a href="splunkjs.private.BaseService.html">BaseService</a></li></ul><h3>Global</h3><ul><li><a href="global.html#_getCookieString">_getCookieString</a></li><li><a href="global.html#_parseCookieHeader">_parseCookieHeader</a></li><li><a href="global.html#_requestWrapper">_requestWrapper</a></li></ul>
+</nav>
+
+<div id="main">
+
+    <h1 class="page-title">Class: PivotSpecification</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2><span class="attribs"><span class="type-signature"></span></span>
+            <span class="ancestors"><a href="splunkjs.html">splunkjs</a><a href="splunkjs.Service.html">.Service</a>.</span>PivotSpecification<span class="signature">()</span><span class="type-signature"></span></h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+
+    
+    <h4 class="name" id="PivotSpecification"><span class="type-signature"></span>new PivotSpecification<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    PivotSpecification represents a pivot to be done on a particular data model object.
+The user creates a PivotSpecification on some data model object, adds filters, row splits,
+column splits, and cell values, then calls the pivot method to query splunkd and
+get a set of SPL queries corresponding to this specification.
+
+Call the `pivot` method to query Splunk for SPL queries corresponding to this pivot.
+
+This class supports a fluent API, each function except `init`, `toJsonObject` & `pivot`
+return the modified `splunkjs.Service.PivotSpecification` instance.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="service.js.html">service.js</a>, <a href="service.js.html#line4349">line 4349</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>let dataModels = await service.dataModels().fetch();
+     let searches = dataModels.item("internal_audit_logs").objectByName("searches");
+     let pivotSpecification = searches.createPivotSpecification();
+     let pivot = await pivotSpecification
+                             .addRowSplit("user", "Executing user")
+                             .addRangeColumnSplit("exec_time", {limit: 4})
+                             .addCellValue("search", "Search Query", "values")
+                             .pivot();
+     console.log("Got a Pivot object from the Splunk server!");
+
+Has these properties:
+   - `dataModelObject` (_splunkjs.Service.DataModelObject_): The `DataModelObject` from which
+       this `PivotSpecification` was created.
+   - `columns` (_array_): The column splits on this `PivotSpecification`.
+   - `rows` (_array_): The row splits on this `PivotSpecification`.
+   - `filters` (_array_): The filters on this `PivotSpecification`.
+   - `cells` (_array_): The cell aggregations for this`PivotSpecification`.
+   - `accelerationNamespace` (_string_|_null_): The name of the `DataModel` that owns the `DataModelObject`
+       on which this `PivotSpecification` was created if the `DataModel` is accelerated. Alternatively,
+       you can set this property manually to the sid of an acceleration job in the format `sid=&lt;sid>`.
+
+Valid comparison types are:
+   - `boolean`
+   - `string`
+   - `number`
+   - `ipv4`
+
+Valid boolean comparisons are:
+   - `=`
+   - `is`
+   - `isNull`
+   - `isNotNull`
+
+Valid string comparisons are:
+   - `=`
+   - `is`
+   - `isNull`
+   - `isNotNull`
+   - `contains`
+   - `doesNotContain`
+   - `startsWith`
+   - `endsWith`
+   - `regex`
+
+Valid number comparisons are:
+   - `=`
+   - `!=`
+   - `&lt;`
+   - `>`
+   - `&lt;=`
+   - `>=`
+   - `is`
+   - `isNull`
+   - `isNotNull`
+
+Valid ipv4 comparisons are:
+   - `is`
+   - `isNull`
+   - `isNotNull`
+   - `contains`
+   - `doesNotContain`
+   - `startsWith`
+
+Valid binning values are:
+   - `auto`
+   - `year`
+   - `month`
+   - `day`
+   - `hour`
+   - `minute`
+   - `second`
+
+Valid sort directions are:
+   - `ASCENDING`
+   - `DECENDING`
+   - `DEFAULT`
+
+Valid stats functions are:
+   - `list`
+   - `values`
+   - `first`
+   - `last`
+   - `count`
+   - `dc`
+   - `sum`
+   - `average`
+   - `max`
+   - `min`
+   - `stdev`
+   - `duration`
+   - `earliest`
+   - `latest`</code></pre>
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".addBooleanColumnSplit"><span class="type-signature">(static) </span>addBooleanColumnSplit<span class="signature">(fieldName, trueDisplayValue, falseDisplayValue)</span><span class="type-signature"> &rarr; {<a href="splunkjs.Service.PivotSpecification.html">splunkjs.Service.PivotSpecification</a>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Add a column split on a boolean valued field.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fieldName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The name of field to split on.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>trueDisplayValue</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">A string to display in the true valued column label.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>falseDisplayValue</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">A string to display in the false valued column label.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="service.js.html">service.js</a>, <a href="service.js.html#line4861">line 4861</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The updated pivot specification.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="splunkjs.Service.PivotSpecification.html">splunkjs.Service.PivotSpecification</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".addBooleanRowSplit"><span class="type-signature">(static) </span>addBooleanRowSplit<span class="signature">(fieldName, label, trueDisplayValue, falseDisplayValue)</span><span class="type-signature"> &rarr; {<a href="splunkjs.Service.PivotSpecification.html">splunkjs.Service.PivotSpecification</a>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Add a row split on a boolean valued field.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fieldName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The name of field to split on.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>label</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">A human readable name for this set of rows.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>trueDisplayValue</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">A string to display in the true valued row label.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>falseDisplayValue</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">A string to display in the false valued row label.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="service.js.html">service.js</a>, <a href="service.js.html#line4715">line 4715</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The updated pivot specification.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="splunkjs.Service.PivotSpecification.html">splunkjs.Service.PivotSpecification</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".addCellValue"><span class="type-signature">(static) </span>addCellValue<span class="signature">(fieldName, label, statsFunction)</span><span class="type-signature"> &rarr; {<a href="splunkjs.Service.PivotSpecification.html">splunkjs.Service.PivotSpecification</a>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Add an aggregate to each cell of the pivot.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fieldName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The name of field to aggregate.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>label</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">a human readable name for this aggregate.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>statsFunction</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The function to use for aggregation, see class docs for valid stats functions.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="service.js.html">service.js</a>, <a href="service.js.html#line4922">line 4922</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The updated pivot specification.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="splunkjs.Service.PivotSpecification.html">splunkjs.Service.PivotSpecification</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".addColumnSplit"><span class="type-signature">(static) </span>addColumnSplit<span class="signature">(fieldName)</span><span class="type-signature"> &rarr; {<a href="splunkjs.Service.PivotSpecification.html">splunkjs.Service.PivotSpecification</a>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Add a column split on a string or number valued field, producing a column for
+each distinct value of the field.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fieldName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The name of field to split on.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="service.js.html">service.js</a>, <a href="service.js.html#line4778">line 4778</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The updated pivot specification.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="splunkjs.Service.PivotSpecification.html">splunkjs.Service.PivotSpecification</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".addFilter"><span class="type-signature">(static) </span>addFilter<span class="signature">(fieldName, comparisonType, comparisonOp, compareTo)</span><span class="type-signature"> &rarr; {<a href="splunkjs.Service.PivotSpecification.html">splunkjs.Service.PivotSpecification</a>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Add a filter on a boolean valued field. The filter will be a constraint of the form
+`field `comparison` compareTo`, for example: `is_remote = false`.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fieldName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The name of field to filter on</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>comparisonType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The type of comparison, see class docs for valid types.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>comparisonOp</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The comparison, see class docs for valid comparisons, based on type.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>compareTo</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The value to compare the field to.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="service.js.html">service.js</a>, <a href="service.js.html#line4527">line 4527</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The updated pivot specification.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="splunkjs.Service.PivotSpecification.html">splunkjs.Service.PivotSpecification</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".addLimitFilter"><span class="type-signature">(static) </span>addLimitFilter<span class="signature">(fieldName, sortAttribute, sortDirection, limit, statsFunction)</span><span class="type-signature"> &rarr; {<a href="splunkjs.Service.PivotSpecification.html">splunkjs.Service.PivotSpecification</a>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Add a limit on the events shown in a pivot by sorting them according to some field, then taking
+the specified number from the beginning or end of the list.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fieldName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The name of field to filter on.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>sortAttribute</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The name of the field to use for sorting.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>sortDirection</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The direction to sort events, see class docs for valid types.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>limit</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The number of values from the sorted list to allow through this filter.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>statsFunction</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The stats function to use for aggregation before sorting, see class docs for valid types.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="service.js.html">service.js</a>, <a href="service.js.html#line4575">line 4575</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The updated pivot specification.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="splunkjs.Service.PivotSpecification.html">splunkjs.Service.PivotSpecification</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".addRangeColumnSplit"><span class="type-signature">(static) </span>addRangeColumnSplit<span class="signature">(fieldName, options)</span><span class="type-signature"> &rarr; {<a href="splunkjs.Service.PivotSpecification.html">splunkjs.Service.PivotSpecification</a>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Add a column split on a numeric field, splitting the values into ranges.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fieldName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The field to split on.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">An optional dictionary of collection filtering and pagination options:
+   - `start` (_integer_): The value of the start of the first range, or null to take the lowest value in the events.
+   - `end` (_integer_): The value for the end of the last range, or null to take the highest value in the events.
+   - `step` (_integer_): The the width of each range, or null to have Splunk calculate it.
+   - `limit` (_integer_): The maximum number of ranges to split into, or null for no limit.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="service.js.html">service.js</a>, <a href="service.js.html#line4815">line 4815</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The updated pivot specification.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="splunkjs.Service.PivotSpecification.html">splunkjs.Service.PivotSpecification</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".addRangeRowSplit"><span class="type-signature">(static) </span>addRangeRowSplit<span class="signature">(fieldName, label, options)</span><span class="type-signature"> &rarr; {<a href="splunkjs.Service.PivotSpecification.html">splunkjs.Service.PivotSpecification</a>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Add a row split on a numeric field, splitting into numeric ranges.
+
+This split generates bins with edges equivalent to the
+classic loop 'for i in <start> to <end> by <step>' but with a maximum
+number of bins <limit>. This dispatches to the stats and xyseries search commands.
+See their documentation for more details.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fieldName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The field to split on.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>label</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">A human readable name for this set of rows.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">An optional dictionary of collection filtering and pagination options:
+   - `start` (_integer_): The value of the start of the first range, or null to take the lowest value in the events.
+   - `end` (_integer_): The value for the end of the last range, or null to take the highest value in the events.
+   - `step` (_integer_): The the width of each range, or null to have Splunk calculate it.
+   - `limit` (_integer_): The maximum number of ranges to split into, or null for no limit.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="service.js.html">service.js</a>, <a href="service.js.html#line4670">line 4670</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The updated pivot specification.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="splunkjs.Service.PivotSpecification.html">splunkjs.Service.PivotSpecification</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".addRowSplit"><span class="type-signature">(static) </span>addRowSplit<span class="signature">(fieldName, label)</span><span class="type-signature"> &rarr; {<a href="splunkjs.Service.PivotSpecification.html">splunkjs.Service.PivotSpecification</a>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Add a row split on a numeric or string valued field, splitting on each distinct value of the field.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fieldName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The name of field to split on.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>label</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">A human readable name for this set of rows.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="service.js.html">service.js</a>, <a href="service.js.html#line4626">line 4626</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The updated pivot specification.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="splunkjs.Service.PivotSpecification.html">splunkjs.Service.PivotSpecification</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".addTimestampColumnSplit"><span class="type-signature">(static) </span>addTimestampColumnSplit<span class="signature">(fieldName, binning)</span><span class="type-signature"> &rarr; {<a href="splunkjs.Service.PivotSpecification.html">splunkjs.Service.PivotSpecification</a>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Add a column split on a timestamp valued field, binned by the specified bucket size.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fieldName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The name of field to split on.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>binning</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The size of bins to use, see class docs for valid types.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="service.js.html">service.js</a>, <a href="service.js.html#line4890">line 4890</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The updated pivot specification.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="splunkjs.Service.PivotSpecification.html">splunkjs.Service.PivotSpecification</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".addTimestampRowSplit"><span class="type-signature">(static) </span>addTimestampRowSplit<span class="signature">(fieldName, label, binning)</span><span class="type-signature"> &rarr; {<a href="splunkjs.Service.PivotSpecification.html">splunkjs.Service.PivotSpecification</a>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Add a row split on a timestamp valued field, binned by the specified bucket size.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fieldName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The name of field to split on.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>label</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">A human readable name for this set of rows.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>binning</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The size of bins to use, see class docs for valid types.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="service.js.html">service.js</a>, <a href="service.js.html#line4746">line 4746</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The updated pivot specification.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="splunkjs.Service.PivotSpecification.html">splunkjs.Service.PivotSpecification</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".pivot"><span class="type-signature">(static) </span>pivot<span class="signature">(response_timeout)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Query Splunk for SPL queries corresponding to a pivot report
+for this data model, defined by this `PivotSpecification`.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>response_timeout</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">A timeout period for aborting a request in milisecs (0 means no timeout).</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="service.js.html">service.js</a>, <a href="service.js.html#line5032">line 5032</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>let dataModels = await service.dataModels().fetch();
+     let searches = dataModels.item("internal_audit_logs").objectByName("searches");
+     let pivotSpec = searches.createPivotSpecification();
+     // Use of the fluent API
+     let pivot = await pivotSpec.addRowSplit("user", "Executing user")
+         .addRangeColumnSplit("exec_time", {start: 0, end: 12, step: 5, limit: 4})
+         .addCellValue("search", "Search Query", "values")
+         .pivot();
+     console.log("Pivot search is:", pivot.search);</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".run"><span class="type-signature">(static) </span>run<span class="signature">(args, response_timeout)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Convenience method to wrap up the `PivotSpecification.pivot()` and
+`Pivot.run()` function calls.
+
+Query Splunk for SPL queries corresponding to a pivot report
+for this data model, defined by this `PivotSpecification`; then,
+starts a search job running this pivot, accelerated if possible.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">A dictionary of properties for the search job (optional). For a list of available parameters, see <a href="http://dev.splunk.com/view/SP-CAAAEFA#searchjobparams" target="_blank">Search job parameters</a> on Splunk Developer Portal.
+       **Note:** This method throws an error if the `exec_mode=oneshot` parameter is passed in with the properties dictionary.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>response_timeout</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">A timeout period for aborting a request in milisecs (0 means no timeout).</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="service.js.html">service.js</a>, <a href="service.js.html#line5084">line 5084</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>let dataModels = await service.dataModels().fetch();
+     let searches = dataModels.item("internal_audit_logs").objectByName("searches");
+     let pivotSpec = searches.createPivotSpecification();
+     // Use of the fluent API
+     let [job, pivot] = await pivotSpec.addRowSplit("user", "Executing user")
+                         .addRangeColumnSplit("exec_time", {start: 0, end: 12, step: 5, limit: 4})
+                         .addCellValue("search", "Search Query", "values")
+                         .run();
+     console.log("Job SID is:", job.sid);
+     console.log("Pivot search is:", pivot.search);</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".setAccelerationJob"><span class="type-signature">(static) </span>setAccelerationJob<span class="signature">(sid)</span><span class="type-signature"> &rarr; {<a href="splunkjs.Service.PivotSpecification.html">splunkjs.Service.PivotSpecification</a>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Set the acceleration cache for this pivot specification to a job,
+usually generated by createLocalAccelerationJob on a DataModelObject
+instance, as the acceleration cache for this pivot specification.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>sid</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+|
+
+<span class="param-type"><a href="splunkjs.Service.Job.html">splunkjs.Service.Job</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The sid of an acceleration job,
+    or, a `splunkjs.Service.Job` instance.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="service.js.html">service.js</a>, <a href="service.js.html#line4501">line 4501</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The updated pivot specification.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="splunkjs.Service.PivotSpecification.html">splunkjs.Service.PivotSpecification</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".toJsonObject"><span class="type-signature">(static) </span>toJsonObject<span class="signature">()</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Returns a JSON ready object representation of this pivot specification.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="service.js.html">service.js</a>, <a href="service.js.html#line5001">line 5001</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The JSON ready object representation of this pivot specification.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Splunk SDK for JavaScript API reference. Documentation generated by
+    <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a>.
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

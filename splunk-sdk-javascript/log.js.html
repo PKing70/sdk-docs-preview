@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Source: log.js &middot; Splunk SDK for JavaScript</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <!-- Splunk overlay loads last so it wins on equal specificity -->
+    <link type="text/css" rel="stylesheet" href="splunk-jsdoc.css">
+</head>
+
+<body>
+
+<div class="splunk-masthead">
+  <div class="splunk-masthead__accent" aria-hidden="true"></div>
+  <nav class="splunk-masthead__inner" aria-label="Splunk developer documentation">
+    <!-- TODO swap for the licensed Splunk logo asset; text wordmark is a placeholder -->
+    <a class="splunk-masthead__wordmark" href="https://dev.splunk.com/">splunk&gt;</a>
+    <span class="splunk-masthead__divider" aria-hidden="true"></span>
+    <a class="splunk-masthead__product" href="index.html">Splunk SDK for JavaScript</a>
+
+    <span class="splunk-masthead__spacer"></span>
+
+    <div class="splunk-masthead__right">
+      
+      <div class="splunk-version">
+        <label class="splunk-version__label" for="splunk-version-select">Version</label>
+        <select class="splunk-version__select" id="splunk-version-select"
+                onchange="if(this.value)window.location.href=this.value;">
+          
+          <option value="https://splunk.github.io/splunk-sdk-javascript/latest/" selected>2.0.2 (latest)</option>
+          
+          <option value="https://splunk.github.io/splunk-sdk-javascript/1.12.0/">1.12.0</option>
+          
+          <option value="https://splunk.github.io/splunk-sdk-javascript/1.11.0/">1.11.0</option>
+          
+        </select>
+      </div>
+      
+      <a class="splunk-masthead__portal-link" href="https://dev.splunk.com/enterprise/docs/devtools/javascript/sdk-javascript/">Guides on dev.splunk.com</a>
+    </div>
+  </nav>
+</div>
+
+
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="splunkjs.module_Logger.html">Logger</a></li><li><a href="splunkjs.module_Utils.html">Utils</a></li></ul><h3>Namespaces</h3><ul><li><a href="splunkjs.html">splunkjs</a></li><li><a href="splunkjs.private.html">private</a></li></ul><h3>Classes</h3><ul><li><a href="splunkjs.Context.html">Context</a></li><li><a href="splunkjs.html#.Http">Http</a></li><li><a href="splunkjs.Service.html">Service</a></li><li><a href="splunkjs.Service.Application.html">Application</a></li><li><a href="splunkjs.Service.Applications.html">Applications</a></li><li><a href="splunkjs.Service.Collection.html">Collection</a></li><li><a href="splunkjs.Service.ConfigurationFile.html">ConfigurationFile</a></li><li><a href="splunkjs.Service.ConfigurationStanza.html">ConfigurationStanza</a></li><li><a href="splunkjs.Service.Configurations.html">Configurations</a></li><li><a href="splunkjs.Service.DataModel.html">DataModel</a></li><li><a href="splunkjs.Service.DataModelCalculation.html">DataModelCalculation</a></li><li><a href="splunkjs.Service.DataModelConstraint.html">DataModelConstraint</a></li><li><a href="splunkjs.Service.DataModelField.html">DataModelField</a></li><li><a href="splunkjs.Service.DataModelObject.html">DataModelObject</a></li><li><a href="splunkjs.Service.DataModels.html">DataModels</a></li><li><a href="splunkjs.Service.DataModels.instantiateEntity.html">instantiateEntity</a></li><li><a href="splunkjs.Service.Endpoint.html">Endpoint</a></li><li><a href="splunkjs.Service.Entity.html">Entity</a></li><li><a href="splunkjs.Service.FiredAlert.html">FiredAlert</a></li><li><a href="splunkjs.Service.FiredAlertGroup.html">FiredAlertGroup</a></li><li><a href="splunkjs.Service.FiredAlertGroupCollection.html">FiredAlertGroupCollection</a></li><li><a href="splunkjs.Service.Index.html">Index</a></li><li><a href="splunkjs.Service.Indexes.html">Indexes</a></li><li><a href="splunkjs.Service.Job.html">Job</a></li><li><a href="splunkjs.Service.Jobs.html">Jobs</a></li><li><a href="splunkjs.Service.Pivot.html">Pivot</a></li><li><a href="splunkjs.Service.PivotSpecification.html">PivotSpecification</a></li><li><a href="splunkjs.Service.Resource.html">Resource</a></li><li><a href="splunkjs.Service.SavedSearch.html">SavedSearch</a></li><li><a href="splunkjs.Service.SavedSearches.html">SavedSearches</a></li><li><a href="splunkjs.Service.ServerInfo.html">ServerInfo</a></li><li><a href="splunkjs.Service.StoragePassword.html">StoragePassword</a></li><li><a href="splunkjs.Service.StoragePasswords.html">StoragePasswords</a></li><li><a href="splunkjs.Service.User.html">User</a></li><li><a href="splunkjs.Service.Users.html">Users</a></li><li><a href="splunkjs.Service.View.html">View</a></li><li><a href="splunkjs.Service.Views.html">Views</a></li><li><a href="splunkjs.private.BaseService.html">BaseService</a></li></ul><h3>Global</h3><ul><li><a href="global.html#_getCookieString">_getCookieString</a></li><li><a href="global.html#_parseCookieHeader">_parseCookieHeader</a></li><li><a href="global.html#_requestWrapper">_requestWrapper</a></li></ul>
+</nav>
+
+<div id="main">
+
+    <h1 class="page-title">Source: log.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/*!*/
+// Copyright 2012 Splunk, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License"): you may
+// not use this file except in compliance with the License. You may obtain
+// a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+// WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+// License for the specific language governing permissions and limitations
+// under the License.
+
+(function() {
+    "use strict";
+    var utils = require('./utils');
+    
+    var root = exports || this;
+
+    var levels = {
+        "ALL": 4,
+        "INFO": 3,
+        "WARN": 2,
+        "ERROR": 1,
+        "NONE": 0
+    };
+
+    // Normalize the value of the environment variable $LOG_LEVEL to
+    // an integer (look up named levels like "ERROR" in levels above),
+    // and default to "ERROR" if there is no value or an invalid value
+    // set.
+    var setLevel = function(level) {    
+        if (utils.isString(level) &amp;&amp; levels.hasOwnProperty(level)) {
+            process.env.LOG_LEVEL = levels[level];
+        } 
+        else if (!isNaN(parseInt(level, 10)) &amp;&amp;
+                   utils.keyOf(parseInt(level, 10), levels)) {
+            process.env.LOG_LEVEL = level;
+        } 
+        else {
+            process.env.LOG_LEVEL = levels["ERROR"];                
+        }
+    };
+
+    if (process.env.LOG_LEVEL) {
+        setLevel(process.env.LOG_LEVEL);
+    } 
+    else {
+        process.env.LOG_LEVEL = levels["ERROR"];
+    }
+
+    // Set the actual output functions
+    // This section is not covered by unit tests, since there's no
+    // straightforward way to control what the console object will be.
+    var _log, _warn, _error, _info;
+    _log = _warn = _error = _info = function() {};
+    if (typeof(console) !== "undefined") {
+
+        var logAs = function(level) {
+            return function(str) {
+                try { 
+                    console[level].apply(console, arguments);
+                }
+                catch(ex) { 
+                    console[level](str);
+                }
+            };
+        };
+
+        if (console.log) { _log = logAs("log"); }
+        if (console.error) { _error = logAs("error"); }
+        if (console.warn) { _warn = logAs("warn"); }
+        if (console.info) { _info = logAs("info"); }
+    }
+
+    /**
+     * A controllable logging module that lets you display different types of
+     * debugging information to the console.  
+     *
+     * @module splunkjs.Logger
+     */
+    exports.Logger = {
+        /**
+         * Logs debug messages to the console. This function is the same as 
+         * `console.log`.
+         *
+         * @function splunkjs.Logger
+         */
+        log: function() {
+            if (process.env.LOG_LEVEL >= levels.ALL) {
+                _log.apply(null, arguments);
+            }
+        },
+        
+        /**
+         * Logs debug errors to the console. This function is the same as 
+         * `console.error`.
+         *
+         * @function splunkjs.Logger
+         */
+        error: function() {
+            if (process.env.LOG_LEVEL >= levels.ERROR) {
+                _error.apply(null, arguments);
+            }
+        },
+        
+        /**
+         * Logs debug warnings to the console. This function is the same as 
+         * `console.warn`.
+         *
+         * @function splunkjs.Logger
+         */
+        warn: function() {
+            if (process.env.LOG_LEVEL >= levels.WARN) {
+                _warn.apply(null, arguments);
+            }
+        },
+        
+        /**
+         * Logs debug info to the console. This function is the same as 
+         * `console.info`.
+         *
+         * @function splunkjs.Logger
+         */
+        info: function() {
+            if (process.env.LOG_LEVEL >= levels.INFO) {
+                _info.apply(null, arguments);
+            }
+        },
+        
+        /**
+         * Prints all messages that are retrieved from the splunkd server to the
+         * console.
+         *
+         * @function splunkjs.Logger
+         */
+        printMessages: function(allMessages) {
+            allMessages = allMessages || [];
+            
+            for(var i = 0; i &lt; allMessages.length; i++) {
+                var message = allMessages[i];
+                var type = message["type"];
+                var text = message["text"];
+                var msg = '[SPLUNKD] ' + text;
+                switch (type) {
+                    case 'HTTP':
+                    case 'FATAL':
+                    case 'ERROR':
+                        this.error(msg);
+                        break;
+                    case 'WARN':
+                        this.warn(msg);
+                        break;
+                    case 'INFO':
+                        this.info(msg);
+                        break;
+                    case 'HTTP':
+                        this.error(msg);
+                        break;
+                    default:
+                        this.info(msg);
+                        break;
+                }
+            }  
+        },
+        
+        /**
+         * Sets the global logging level to indicate which information to log.
+         *
+         * @example
+         *
+         *      splunkjs.Logger.setLevel("WARN");
+         *      splunkjs.Logger.setLevel(0); // equivalent to NONE
+         *
+         * @param {String|Number} level A string or number ("ALL" = 4 | "INFO" = 3 | "WARN" = 2 | "ERROR" = 1 | "NONE" = 0) indicating the logging level.
+         *
+         * @function splunkjs.Logger
+         */
+        setLevel: function(level) { setLevel.apply(this, arguments); },
+        
+        /*!*/
+        levels: levels
+    };
+})();
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Splunk SDK for JavaScript API reference. Documentation generated by
+    <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a>.
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
