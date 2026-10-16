@@ -1,0 +1,994 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="prev" title="splunklib.searchcommands.validators" href="searchcommandsvalidators.html">
+
+    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+        <title>splunklib.ai - Splunk SDK for Python API Reference</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="_static/splunk-theme.css?v=5d15ced1" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+<div class="announcement">
+  <aside class="announcement-content">
+    
+<div class="splunk-masthead">
+  <div class="splunk-masthead__accent" aria-hidden="true"></div>
+  <nav class="splunk-masthead__inner" aria-label="Splunk developer documentation"><a class="splunk-masthead__wordmark" href="https://dev.splunk.com/">splunk&gt;</a>
+    <span class="splunk-masthead__divider" aria-hidden="true"></span>
+    <a class="splunk-masthead__product" href="index.html">Splunk SDK for Python</a>
+
+    <span class="splunk-masthead__spacer"></span>
+
+    <div class="splunk-masthead__right">
+      <div class="splunk-version">
+        <label class="splunk-version__label" for="splunk-version-select">Version</label>
+        <select
+          class="splunk-version__select"
+          id="splunk-version-select"
+          onchange="if(this.value)window.location.href=this.value;"
+        >
+          <option value="../latest/" selected>3.0.1 (latest)</option>
+          <option value="../3.0.0/">3.0.0</option>
+          <option value="../2.1.1/">2.1.1</option>
+          <option value="../2.1.0/">2.1.0</option>
+        </select>
+      </div>
+      <a class="splunk-masthead__portal-link" href="https://dev.splunk.com/enterprise/docs/devtools/python/sdk-python/">
+        Guides on dev.splunk.com
+      </a>
+    </div>
+  </nav>
+</div>
+
+  </aside>
+</div>
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Splunk SDK for Python API Reference</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="binding.html">splunklib.binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="client.html">splunklib.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">splunklib.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="results.html">splunklib.results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modularinput.html">splunklib.modularinput</a></li>
+<li class="toctree-l1"><a class="reference internal" href="searchcommands.html">splunklib.searchcommands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="searchcommandsvalidators.html">splunklib.searchcommands.validators</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">splunklib.ai</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="_sources/ai.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="module-splunklib.ai">
+<span id="splunklib-ai"></span><h1>splunklib.ai<a class="headerlink" href="#module-splunklib.ai" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.agent.Agent">
+<span class="property"><span class="k"><span class="pre">final</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.agent.</span></span><span class="sig-name descname"><span class="pre">Agent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#splunklib.ai.model.PredefinedModel" title="splunklib.ai.model.PredefinedModel"><span class="pre">PredefinedModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="client.html#splunklib.client.Service" title="splunklib.client.Service"><span class="pre">Service</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tool_settings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#splunklib.ai.tool_settings.ToolSettings" title="splunklib.ai.tool_settings.ToolSettings"><span class="pre">ToolSettings</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">ToolSettings(local=False,</span> <span class="pre">remote=None)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">BaseAgent</span><span class="p"><span class="pre">[</span></span><span class="pre">BaseModel</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_schema</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="searchcommands.html#splunklib.searchcommands.EventingCommand.ConfigurationSettings.type" title="splunklib.searchcommands.EventingCommand.ConfigurationSettings.type"><span class="pre">type</span></a><span class="p"><span class="pre">[</span></span><span class="pre">OutputT</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_schema</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="searchcommands.html#splunklib.searchcommands.EventingCommand.ConfigurationSettings.type" title="splunklib.searchcommands.EventingCommand.ConfigurationSettings.type"><span class="pre">type</span></a><span class="p"><span class="pre">[</span></span><span class="pre">BaseModel</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">middleware</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#splunklib.ai.middleware.AgentMiddleware" title="splunklib.ai.middleware.AgentMiddleware"><span class="pre">AgentMiddleware</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#splunklib.ai.limits.AgentLimits" title="splunklib.ai.limits.AgentLimits"><span class="pre">AgentLimits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">AgentLimits(timeout=600.0,</span> <span class="pre">max_steps=100,</span> <span class="pre">max_tokens=200000,</span> <span class="pre">max_structured_output_retires=3)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Logger</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conversation_store</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#splunklib.ai.conversation_store.ConversationStore" title="splunklib.ai.conversation_store.ConversationStore"><span class="pre">ConversationStore</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thread_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.agent.Agent" title="Link to this definition">¶</a></dt>
+<dd><p>Core entry point for interacting with LLMs in the Agentic Splunk SDK.</p>
+<p>Agents are async context managers and must be used with <cite>async with</cite>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">with</span> <span class="n">Agent</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">system_prompt</span><span class="o">=</span><span class="s2">"You are a helpful Splunk assistant."</span><span class="p">,</span>
+    <span class="n">service</span><span class="o">=</span><span class="n">service</span><span class="p">,</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">agent</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">agent</span><span class="o">.</span><span class="n">invoke</span><span class="p">([</span><span class="o">...</span><span class="p">])</span>
+</pre></div>
+</div>
+<dl>
+<dt>Args:</dt><dd><dl>
+<dt>model:</dt><dd><p>The underlying LLM to use. Must be a <cite>PredefinedModel</cite> instance
+(for example, <cite>OpenAIModel</cite>).</p>
+</dd>
+<dt>system_prompt:</dt><dd><p>The system message used to prime and control the agent behavior.</p>
+</dd>
+<dt>service:</dt><dd><p>A <cite>Service</cite> instance, that is the authenticated to the Splunk service.</p>
+</dd>
+<dt>tool_settings:</dt><dd><p>Optional <cite>ToolSettings</cite> instance controlling which MCP tools are
+loaded and exposed to the model. When provided, the agent loads
+local tools via <code class="docutils literal notranslate"><span class="pre">ToolSettings.local</span></code> (registered in <code class="docutils literal notranslate"><span class="pre">&lt;app_path&gt;/bin/tools.py</span></code>)
+and remote tools via <code class="docutils literal notranslate"><span class="pre">ToolSettings.remote</span></code> (requires Splunk MCP Server App present on SH).</p>
+<p>Each sub-setting accepts an optional allowlist to restrict which
+tools are exposed. No tools are loaded by default.</p>
+</dd>
+<dt>agents:</dt><dd><p>Optional list of subagents available to this agent.</p>
+</dd>
+<dt>output_schema:</dt><dd><p>Optional Pydantic model type describing the structured output this
+agent should return. If <cite>None</cite>, the agent returns free-form text only.</p>
+</dd>
+<dt>input_schema:</dt><dd><p>Optional Pydantic model type describing the structured input this
+agent accepts. Currently this is only honored when the agent is
+used as a <em>subagent</em>. The supervisor agent uses this schema to
+understand how to call the subagent and how to format its inputs.</p>
+</dd>
+<dt>name:</dt><dd><p>Name of the agent when used as a subagent. This is
+surfaced to the supervisor and used to decide whether this agent
+is appropriate for a given task. Ignored for top-level agents.</p>
+</dd>
+<dt>description:</dt><dd><p>Description of the agent when used as a subagent. This is
+surfaced to the supervisor and used to decide whether this agent
+is appropriate for a given task. Ignored for top-level agents.</p>
+</dd>
+<dt>logger:</dt><dd><p>Optional logger instance used for tracing and debugging the agent’s execution.
+Additionally logs from the local tools are forwarded to this logger.</p>
+</dd>
+<dt>conversation_store:</dt><dd><p>Optional <cite>ConversationStore</cite> instance used to persist conversation history
+across multiple <cite>invoke</cite> calls. When provided, the agent automatically loads
+prior messages for the active thread before each invocation and saves the
+full updated history afterwards.</p>
+<p>Use the built-in <cite>InMemoryStore</cite> for in-process persistence, or implement
+<cite>ConversationStore</cite> to back history with an external store.</p>
+<p>Without a store, each <cite>invoke</cite> call is stateless and the agent has no memory
+of previous turns.</p>
+</dd>
+<dt>thread_id:</dt><dd><p>Identifies the conversation thread used when reading from and writing to the
+<cite>conversation_store</cite>. Each unique <cite>thread_id</cite> maintains a separate history,
+so different users or sessions can share one store without interference.</p>
+<p>If omitted, a random ID is generated automatically. The <cite>thread_id</cite> can
+also be overridden per-call by passing it directly to <cite>invoke</cite>.</p>
+<p>Never invoke an Agent using the same thread_id more than once concurrently
+while using the same conversation_store.</p>
+</dd>
+<dt>limits:</dt><dd><p>Optional <cite>AgentLimits</cite> instance controlling the built-in safety limits.
+When omitted, sane defaults are applied automatically.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="splunklib.ai.agent.Agent.invoke">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">invoke</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">messages</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#splunklib.ai.messages.BaseMessage" title="splunklib.ai.messages.BaseMessage"><span class="pre">BaseMessage</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thread_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#splunklib.ai.messages.AgentResponse" title="splunklib.ai.messages.AgentResponse"><span class="pre">AgentResponse</span></a><span class="p"><span class="pre">[</span></span><span class="pre">OutputT</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#splunklib.ai.agent.Agent.invoke" title="Link to this definition">¶</a></dt>
+<dd><p>Invokes the agent with a list of messages.</p>
+<p>Use this for multi-message or role-based conversations.
+When passing external data (log entries, alert payloads, API responses, etc.)
+inside a HumanMessage, use <cite>create_structured_prompt</cite> to reduce the risk of
+prompt injection, or use <cite>invoke_with_data</cite> instead.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="splunklib.ai.agent.Agent.invoke_with_data">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">invoke_with_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instructions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thread_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#splunklib.ai.messages.AgentResponse" title="splunklib.ai.messages.AgentResponse"><span class="pre">AgentResponse</span></a><span class="p"><span class="pre">[</span></span><span class="pre">OutputT</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#splunklib.ai.agent.Agent.invoke_with_data" title="Link to this definition">¶</a></dt>
+<dd><p>Invokes the agent with external data that may come from untrusted sources.</p>
+<p>Use instead of <cite>invoke</cite> when passing external data (log entries, alert payloads,
+API responses, etc.) to reduce the risk of prompt injection.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="splunklib.ai.agent.PrivilegedExecutionError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.agent.</span></span><span class="sig-name descname"><span class="pre">PrivilegedExecutionError</span></span><a class="headerlink" href="#splunklib.ai.agent.PrivilegedExecutionError" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Models</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.model.PredefinedModel">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.model.</span></span><span class="sig-name descname"><span class="pre">PredefinedModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.model.PredefinedModel" title="Link to this definition">¶</a></dt>
+<dd><p>Base class for models that are predefined in the SDK</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.model.AnthropicModel">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.model.</span></span><span class="sig-name descname"><span class="pre">AnthropicModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.model.AnthropicModel" title="Link to this definition">¶</a></dt>
+<dd><p>Predefined Anthropic Model</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.model.OpenAIModel">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.model.</span></span><span class="sig-name descname"><span class="pre">OpenAIModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">httpx_client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AsyncClient</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.model.OpenAIModel" title="Link to this definition">¶</a></dt>
+<dd><p>Predefined OpenAI Model</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="splunklib.ai.model.OpenAIModel.extra_body">
+<span class="sig-name descname"><span class="pre">extra_body</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#splunklib.ai.model.OpenAIModel.extra_body" title="Link to this definition">¶</a></dt>
+<dd><p>Optional additional properties to include in the request parameters when
+making requests to OpenAI compatible APIs.</p>
+<p>This is the recommended way to pass custom parameters that are specific to your
+OpenAI-compatible API provider but not part of the standard OpenAI API.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="splunklib.ai.model.OpenAIModel.httpx_client">
+<span class="sig-name descname"><span class="pre">httpx_client</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">AsyncClient</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#splunklib.ai.model.OpenAIModel.httpx_client" title="Link to this definition">¶</a></dt>
+<dd><p>Optional http client, that is used for all outgoing HTTP requests.</p>
+<p>Can be leveraged to set custom Auth headers to OpenAI compatible APIs:</p>
+<blockquote>
+<div><p>httpx_client=httpx.AsyncClient(auth=auth_handler)</p>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.model.GoogleModel">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.model.</span></span><span class="sig-name descname"><span class="pre">GoogleModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">credentials</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">service_account.Credentials</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertexai</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.model.GoogleModel" title="Link to this definition">¶</a></dt>
+<dd><p>Predefined Google Model</p>
+<p>Supports the Gemini API and Vertex AI. The backend is chosen
+automatically: Vertex AI when <code class="docutils literal notranslate"><span class="pre">project</span></code> or <code class="docutils literal notranslate"><span class="pre">credentials</span></code> is set,
+otherwise the Gemini API. Override with <code class="docutils literal notranslate"><span class="pre">vertexai=True/False</span></code>.</p>
+<p>See the README for full usage examples and authentication options.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="splunklib.ai.model.GoogleModel.api_key">
+<span class="sig-name descname"><span class="pre">api_key</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#splunklib.ai.model.GoogleModel.api_key" title="Link to this definition">¶</a></dt>
+<dd><p>API key for the Gemini API or Vertex AI.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="splunklib.ai.model.GoogleModel.credentials">
+<span class="sig-name descname"><span class="pre">credentials</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">service_account.Credentials</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#splunklib.ai.model.GoogleModel.credentials" title="Link to this definition">¶</a></dt>
+<dd><p>Service account credentials for Vertex AI. When set, <code class="docutils literal notranslate"><span class="pre">api_key</span></code> is not required.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="splunklib.ai.model.GoogleModel.location">
+<span class="sig-name descname"><span class="pre">location</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#splunklib.ai.model.GoogleModel.location" title="Link to this definition">¶</a></dt>
+<dd><p>Vertex AI region, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;us-central1&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;europe-west4&quot;</span></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="splunklib.ai.model.GoogleModel.project">
+<span class="sig-name descname"><span class="pre">project</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#splunklib.ai.model.GoogleModel.project" title="Link to this definition">¶</a></dt>
+<dd><p>Google Cloud project ID (Vertex AI only).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="splunklib.ai.model.GoogleModel.temperature">
+<span class="sig-name descname"><span class="pre">temperature</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#splunklib.ai.model.GoogleModel.temperature" title="Link to this definition">¶</a></dt>
+<dd><p>Sampling temperature in the range <code class="docutils literal notranslate"><span class="pre">[0.0,</span> <span class="pre">2.0]</span></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="splunklib.ai.model.GoogleModel.vertexai">
+<span class="sig-name descname"><span class="pre">vertexai</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#splunklib.ai.model.GoogleModel.vertexai" title="Link to this definition">¶</a></dt>
+<dd><p>Force backend selection: <code class="docutils literal notranslate"><span class="pre">True</span></code> for Vertex AI, <code class="docutils literal notranslate"><span class="pre">False</span></code> for Gemini API, <code class="docutils literal notranslate"><span class="pre">None</span></code> to auto-detect.</p>
+</dd></dl>
+
+</dd></dl>
+
+<p class="rubric">Messages</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.messages.BaseMessage">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.messages.</span></span><span class="sig-name descname"><span class="pre">BaseMessage</span></span><a class="headerlink" href="#splunklib.ai.messages.BaseMessage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.messages.HumanMessage">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.messages.</span></span><span class="sig-name descname"><span class="pre">HumanMessage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.messages.HumanMessage" title="Link to this definition">¶</a></dt>
+<dd><p>Message originating from a human user.</p>
+<p>Represents user-provided input to the system, typically used
+to prompt, guide, or respond to the assistant during a
+conversation.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.messages.AIMessage">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.messages.</span></span><span class="sig-name descname"><span class="pre">AIMessage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">*,</span> <span class="pre">content:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">list[str</span> <span class="pre">|</span> <span class="pre">~splunklib.ai.messages.TextBlock</span> <span class="pre">|</span> <span class="pre">~splunklib.ai.messages.OpaqueBlock],</span> <span class="pre">calls:</span> <span class="pre">~collections.abc.Sequence[~splunklib.ai.messages.ToolCall</span> <span class="pre">|</span> <span class="pre">~splunklib.ai.messages.SubagentCall],</span> <span class="pre">structured_output_calls:</span> <span class="pre">~collections.abc.Sequence[~splunklib.ai.messages.StructuredOutputCall]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;,</span> <span class="pre">extras:</span> <span class="pre">dict[str,</span> <span class="pre">~typing.Any]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.messages.AIMessage" title="Link to this definition">¶</a></dt>
+<dd><p>Message produced by an LLM.</p>
+<p>In addition to plain text content, an AIMessage may include
+agent or tool invocations, representing actions the model is
+requesting the Agent to execute.</p>
+<p>AIMessage might contain structured_output_calls, when the LLM model
+does not support natively structured outputs, in such cases the
+LLM returns the structured output as part of a tool call,
+stored in that field.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="splunklib.ai.messages.AIMessage.extras">
+<span class="sig-name descname"><span class="pre">extras</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#splunklib.ai.messages.AIMessage.extras" title="Link to this definition">¶</a></dt>
+<dd><p>This field contains LLM-specific metadata.</p>
+<p>It should be returned to the LLM unchanged in subsequent LLM calls.
+The contents of this field is not guaranteed to be stable
+and might change as SDK evolves.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.messages.SystemMessage">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.messages.</span></span><span class="sig-name descname"><span class="pre">SystemMessage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.messages.SystemMessage" title="Link to this definition">¶</a></dt>
+<dd><p>A message used to prime or control agent behavior.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.messages.ToolMessage">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.messages.</span></span><span class="sig-name descname"><span class="pre">ToolMessage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ToolType</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">call_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#splunklib.ai.messages.ToolResult" title="splunklib.ai.messages.ToolResult"><span class="pre">ToolResult</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#splunklib.ai.messages.ToolFailureResult" title="splunklib.ai.messages.ToolFailureResult"><span class="pre">ToolFailureResult</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.messages.ToolMessage" title="Link to this definition">¶</a></dt>
+<dd><p>ToolMessage represents a response of a tool call</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.messages.SubagentMessage">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.messages.</span></span><span class="sig-name descname"><span class="pre">SubagentMessage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">call_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#splunklib.ai.messages.SubagentStructuredResult" title="splunklib.ai.messages.SubagentStructuredResult"><span class="pre">SubagentStructuredResult</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#splunklib.ai.messages.SubagentTextResult" title="splunklib.ai.messages.SubagentTextResult"><span class="pre">SubagentTextResult</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#splunklib.ai.messages.SubagentFailureResult" title="splunklib.ai.messages.SubagentFailureResult"><span class="pre">SubagentFailureResult</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.messages.SubagentMessage" title="Link to this definition">¶</a></dt>
+<dd><p>SubagentMessage represents a response of an agent invocation</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.messages.AgentResponse">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.messages.</span></span><span class="sig-name descname"><span class="pre">AgentResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">structured_output</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">+OutputT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">messages</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#splunklib.ai.messages.BaseMessage" title="splunklib.ai.messages.BaseMessage"><span class="pre">splunklib.ai.messages.BaseMessage</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.messages.AgentResponse" title="Link to this definition">¶</a></dt>
+<dd><dl class="py property">
+<dt class="sig sig-object py" id="splunklib.ai.messages.AgentResponse.final_message">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">final_message</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#splunklib.ai.messages.AIMessage" title="splunklib.ai.messages.AIMessage"><span class="pre">AIMessage</span></a></span><a class="headerlink" href="#splunklib.ai.messages.AgentResponse.final_message" title="Link to this definition">¶</a></dt>
+<dd><p>final_message returns the AIMessage that ended the agentic loop.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.messages.TextBlock">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.messages.</span></span><span class="sig-name descname"><span class="pre">TextBlock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extras</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.messages.TextBlock" title="Link to this definition">¶</a></dt>
+<dd><p>Plain text content block returned by a model.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="splunklib.ai.messages.TextBlock.extras">
+<span class="sig-name descname"><span class="pre">extras</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#splunklib.ai.messages.TextBlock.extras" title="Link to this definition">¶</a></dt>
+<dd><p>This field contains LLM-specific metadata.</p>
+<p>It should be returned to the LLM unchanged in subsequent LLM calls.
+The contents of this field is not guaranteed to be stable
+and might change as SDK evolves.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.messages.ToolCall">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.messages.</span></span><span class="sig-name descname"><span class="pre">ToolCall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">splunklib.ai.tools.ToolType</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.messages.ToolCall" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.messages.SubagentCall">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.messages.</span></span><span class="sig-name descname"><span class="pre">SubagentCall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thread_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.messages.SubagentCall" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.messages.ToolResult">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.messages.</span></span><span class="sig-name descname"><span class="pre">ToolResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">structured_content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.messages.ToolResult" title="Link to this definition">¶</a></dt>
+<dd><p>ToolResult represents a result of a successful tool call.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.messages.SubagentTextResult">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.messages.</span></span><span class="sig-name descname"><span class="pre">SubagentTextResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.messages.SubagentTextResult" title="Link to this definition">¶</a></dt>
+<dd><p>SubagentTextResult represents a result of a successful subagent call.
+Returned by subagent calls that don’t have an output schema.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.messages.SubagentStructuredResult">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.messages.</span></span><span class="sig-name descname"><span class="pre">SubagentStructuredResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">structured_output</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.messages.SubagentStructuredResult" title="Link to this definition">¶</a></dt>
+<dd><p>SubagentStructuredResult represents a result of a successful subagent call.
+Returned by subagent calls that have an output schema.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.messages.ToolFailureResult">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.messages.</span></span><span class="sig-name descname"><span class="pre">ToolFailureResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.messages.ToolFailureResult" title="Link to this definition">¶</a></dt>
+<dd><p>Represents the result of a failed sub-agent call.</p>
+<p>This type of failure is non-fatal, i.e. it does not stop the agent loop.
+Instead, the error information is returned to the LLM.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.messages.SubagentFailureResult">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.messages.</span></span><span class="sig-name descname"><span class="pre">SubagentFailureResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.messages.SubagentFailureResult" title="Link to this definition">¶</a></dt>
+<dd><p>Represents the result of a failed tool call.</p>
+<p>This type of failure is non-fatal, i.e. it does not stop the agent loop.
+Instead, the error information is returned to the LLM.</p>
+</dd></dl>
+
+<p class="rubric">Middleware</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.middleware.AgentMiddleware">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.middleware.</span></span><span class="sig-name descname"><span class="pre">AgentMiddleware</span></span><a class="headerlink" href="#splunklib.ai.middleware.AgentMiddleware" title="Link to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="splunklib.ai.middleware.AgentMiddleware.agent_middleware">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">agent_middleware</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#splunklib.ai.middleware.AgentRequest" title="splunklib.ai.middleware.AgentRequest"><span class="pre">AgentRequest</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#splunklib.ai.middleware.AgentRequest" title="splunklib.ai.middleware.AgentRequest"><span class="pre">AgentRequest</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Awaitable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#splunklib.ai.messages.AgentResponse" title="splunklib.ai.messages.AgentResponse"><span class="pre">AgentResponse</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#splunklib.ai.messages.AgentResponse" title="splunklib.ai.messages.AgentResponse"><span class="pre">AgentResponse</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#splunklib.ai.middleware.AgentMiddleware.agent_middleware" title="Link to this definition">¶</a></dt>
+<dd><p>Executed in between invoke</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="splunklib.ai.middleware.AgentMiddleware.model_middleware">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">model_middleware</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#splunklib.ai.middleware.ModelRequest" title="splunklib.ai.middleware.ModelRequest"><span class="pre">ModelRequest</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#splunklib.ai.middleware.ModelRequest" title="splunklib.ai.middleware.ModelRequest"><span class="pre">ModelRequest</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Awaitable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#splunklib.ai.middleware.ModelResponse" title="splunklib.ai.middleware.ModelResponse"><span class="pre">ModelResponse</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#splunklib.ai.middleware.ModelResponse" title="splunklib.ai.middleware.ModelResponse"><span class="pre">ModelResponse</span></a></span></span><a class="headerlink" href="#splunklib.ai.middleware.AgentMiddleware.model_middleware" title="Link to this definition">¶</a></dt>
+<dd><p>Executed in between the LLM calls</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="splunklib.ai.middleware.AgentMiddleware.subagent_middleware">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">subagent_middleware</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#splunklib.ai.middleware.SubagentRequest" title="splunklib.ai.middleware.SubagentRequest"><span class="pre">SubagentRequest</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#splunklib.ai.middleware.SubagentRequest" title="splunklib.ai.middleware.SubagentRequest"><span class="pre">SubagentRequest</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Awaitable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#splunklib.ai.middleware.SubagentResponse" title="splunklib.ai.middleware.SubagentResponse"><span class="pre">SubagentResponse</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#splunklib.ai.middleware.SubagentResponse" title="splunklib.ai.middleware.SubagentResponse"><span class="pre">SubagentResponse</span></a></span></span><a class="headerlink" href="#splunklib.ai.middleware.AgentMiddleware.subagent_middleware" title="Link to this definition">¶</a></dt>
+<dd><p>Executed in between subagent calls</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="splunklib.ai.middleware.AgentMiddleware.tool_middleware">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">tool_middleware</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#splunklib.ai.middleware.ToolRequest" title="splunklib.ai.middleware.ToolRequest"><span class="pre">ToolRequest</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#splunklib.ai.middleware.ToolRequest" title="splunklib.ai.middleware.ToolRequest"><span class="pre">ToolRequest</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Awaitable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#splunklib.ai.middleware.ToolResponse" title="splunklib.ai.middleware.ToolResponse"><span class="pre">ToolResponse</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#splunklib.ai.middleware.ToolResponse" title="splunklib.ai.middleware.ToolResponse"><span class="pre">ToolResponse</span></a></span></span><a class="headerlink" href="#splunklib.ai.middleware.AgentMiddleware.tool_middleware" title="Link to this definition">¶</a></dt>
+<dd><p>Executed in between tool calls</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splunklib.ai.middleware.agent_middleware">
+<span class="sig-prename descclassname"><span class="pre">splunklib.ai.middleware.</span></span><span class="sig-name descname"><span class="pre">agent_middleware</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#splunklib.ai.middleware.AgentRequest" title="splunklib.ai.middleware.AgentRequest"><span class="pre">AgentRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#splunklib.ai.middleware.AgentRequest" title="splunklib.ai.middleware.AgentRequest"><span class="pre">AgentRequest</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Awaitable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#splunklib.ai.messages.AgentResponse" title="splunklib.ai.messages.AgentResponse"><span class="pre">AgentResponse</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Awaitable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#splunklib.ai.messages.AgentResponse" title="splunklib.ai.messages.AgentResponse"><span class="pre">AgentResponse</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#splunklib.ai.middleware.AgentMiddleware" title="splunklib.ai.middleware.AgentMiddleware"><span class="pre">AgentMiddleware</span></a></span></span><a class="headerlink" href="#splunklib.ai.middleware.agent_middleware" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splunklib.ai.middleware.model_middleware">
+<span class="sig-prename descclassname"><span class="pre">splunklib.ai.middleware.</span></span><span class="sig-name descname"><span class="pre">model_middleware</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#splunklib.ai.middleware.ModelRequest" title="splunklib.ai.middleware.ModelRequest"><span class="pre">ModelRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#splunklib.ai.middleware.ModelRequest" title="splunklib.ai.middleware.ModelRequest"><span class="pre">ModelRequest</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Awaitable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#splunklib.ai.middleware.ModelResponse" title="splunklib.ai.middleware.ModelResponse"><span class="pre">ModelResponse</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Awaitable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#splunklib.ai.middleware.ModelResponse" title="splunklib.ai.middleware.ModelResponse"><span class="pre">ModelResponse</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#splunklib.ai.middleware.AgentMiddleware" title="splunklib.ai.middleware.AgentMiddleware"><span class="pre">AgentMiddleware</span></a></span></span><a class="headerlink" href="#splunklib.ai.middleware.model_middleware" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splunklib.ai.middleware.tool_middleware">
+<span class="sig-prename descclassname"><span class="pre">splunklib.ai.middleware.</span></span><span class="sig-name descname"><span class="pre">tool_middleware</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#splunklib.ai.middleware.ToolRequest" title="splunklib.ai.middleware.ToolRequest"><span class="pre">ToolRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#splunklib.ai.middleware.ToolRequest" title="splunklib.ai.middleware.ToolRequest"><span class="pre">ToolRequest</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Awaitable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#splunklib.ai.middleware.ToolResponse" title="splunklib.ai.middleware.ToolResponse"><span class="pre">ToolResponse</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Awaitable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#splunklib.ai.middleware.ToolResponse" title="splunklib.ai.middleware.ToolResponse"><span class="pre">ToolResponse</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#splunklib.ai.middleware.AgentMiddleware" title="splunklib.ai.middleware.AgentMiddleware"><span class="pre">AgentMiddleware</span></a></span></span><a class="headerlink" href="#splunklib.ai.middleware.tool_middleware" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splunklib.ai.middleware.subagent_middleware">
+<span class="sig-prename descclassname"><span class="pre">splunklib.ai.middleware.</span></span><span class="sig-name descname"><span class="pre">subagent_middleware</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#splunklib.ai.middleware.SubagentRequest" title="splunklib.ai.middleware.SubagentRequest"><span class="pre">SubagentRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#splunklib.ai.middleware.SubagentRequest" title="splunklib.ai.middleware.SubagentRequest"><span class="pre">SubagentRequest</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Awaitable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#splunklib.ai.middleware.SubagentResponse" title="splunklib.ai.middleware.SubagentResponse"><span class="pre">SubagentResponse</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Awaitable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#splunklib.ai.middleware.SubagentResponse" title="splunklib.ai.middleware.SubagentResponse"><span class="pre">SubagentResponse</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#splunklib.ai.middleware.AgentMiddleware" title="splunklib.ai.middleware.AgentMiddleware"><span class="pre">AgentMiddleware</span></a></span></span><a class="headerlink" href="#splunklib.ai.middleware.subagent_middleware" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.middleware.AgentState">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.middleware.</span></span><span class="sig-name descname"><span class="pre">AgentState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">messages</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#splunklib.ai.messages.BaseMessage" title="splunklib.ai.messages.BaseMessage"><span class="pre">BaseMessage</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thread_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.middleware.AgentState" title="Link to this definition">¶</a></dt>
+<dd><p>AgentState is available through certain middlewares and contains information about the current state of an agent execution.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.middleware.AgentRequest">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.middleware.</span></span><span class="sig-name descname"><span class="pre">AgentRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">messages</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#splunklib.ai.messages.BaseMessage" title="splunklib.ai.messages.BaseMessage"><span class="pre">splunklib.ai.messages.BaseMessage</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thread_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.middleware.AgentRequest" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.middleware.ModelRequest">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.middleware.</span></span><span class="sig-name descname"><span class="pre">ModelRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#splunklib.ai.middleware.AgentState" title="splunklib.ai.middleware.AgentState"><span class="pre">splunklib.ai.middleware.AgentState</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.middleware.ModelRequest" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.middleware.ModelResponse">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.middleware.</span></span><span class="sig-name descname"><span class="pre">ModelResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#splunklib.ai.messages.AIMessage" title="splunklib.ai.messages.AIMessage"><span class="pre">splunklib.ai.messages.AIMessage</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">structured_output</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.middleware.ModelResponse" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.middleware.ToolRequest">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.middleware.</span></span><span class="sig-name descname"><span class="pre">ToolRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">call</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#splunklib.ai.messages.ToolCall" title="splunklib.ai.messages.ToolCall"><span class="pre">splunklib.ai.messages.ToolCall</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#splunklib.ai.middleware.AgentState" title="splunklib.ai.middleware.AgentState"><span class="pre">splunklib.ai.middleware.AgentState</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.middleware.ToolRequest" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.middleware.ToolResponse">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.middleware.</span></span><span class="sig-name descname"><span class="pre">ToolResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#splunklib.ai.messages.ToolResult" title="splunklib.ai.messages.ToolResult"><span class="pre">splunklib.ai.messages.ToolResult</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#splunklib.ai.messages.ToolFailureResult" title="splunklib.ai.messages.ToolFailureResult"><span class="pre">splunklib.ai.messages.ToolFailureResult</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.middleware.ToolResponse" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.middleware.SubagentRequest">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.middleware.</span></span><span class="sig-name descname"><span class="pre">SubagentRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">call</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#splunklib.ai.messages.SubagentCall" title="splunklib.ai.messages.SubagentCall"><span class="pre">splunklib.ai.messages.SubagentCall</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#splunklib.ai.middleware.AgentState" title="splunklib.ai.middleware.AgentState"><span class="pre">splunklib.ai.middleware.AgentState</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.middleware.SubagentRequest" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.middleware.SubagentResponse">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.middleware.</span></span><span class="sig-name descname"><span class="pre">SubagentResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#splunklib.ai.messages.SubagentStructuredResult" title="splunklib.ai.messages.SubagentStructuredResult"><span class="pre">splunklib.ai.messages.SubagentStructuredResult</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#splunklib.ai.messages.SubagentTextResult" title="splunklib.ai.messages.SubagentTextResult"><span class="pre">splunklib.ai.messages.SubagentTextResult</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#splunklib.ai.messages.SubagentFailureResult" title="splunklib.ai.messages.SubagentFailureResult"><span class="pre">splunklib.ai.messages.SubagentFailureResult</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.middleware.SubagentResponse" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Limits</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.limits.AgentLimits">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.limits.</span></span><span class="sig-name descname"><span class="pre">AgentLimits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">600.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_steps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_tokens</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">200000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_structured_output_retires</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.limits.AgentLimits" title="Link to this definition">¶</a></dt>
+<dd><p>Built-in safety limits applied to every Agent invocation.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="splunklib.ai.limits.AgentLimits.max_steps">
+<span class="sig-name descname"><span class="pre">max_steps</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">100</span></span><a class="headerlink" href="#splunklib.ai.limits.AgentLimits.max_steps" title="Link to this definition">¶</a></dt>
+<dd><p>Maximum number of messages allowed in the conversation before the
+agent loop is stopped. Checked before each model call.
+Raises <cite>StepsLimitExceededException</cite> when exceeded.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="splunklib.ai.limits.AgentLimits.max_structured_output_retires">
+<span class="sig-name descname"><span class="pre">max_structured_output_retires</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></span><a class="headerlink" href="#splunklib.ai.limits.AgentLimits.max_structured_output_retires" title="Link to this definition">¶</a></dt>
+<dd><p>Maximum number of structured output generation retries allowed
+within a single <cite>invoke</cite> call.
+Raises <cite>StructuredOutputRetryLimitExceededException</cite> when exceeded.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="splunklib.ai.limits.AgentLimits.max_tokens">
+<span class="sig-name descname"><span class="pre">max_tokens</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">200000</span></span><a class="headerlink" href="#splunklib.ai.limits.AgentLimits.max_tokens" title="Link to this definition">¶</a></dt>
+<dd><p>Maximum number of tokens (approximate) allowed in the messages
+passed to the model. Checked before each model call.
+Raises <cite>TokenLimitExceededException</cite> when exceeded.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="splunklib.ai.limits.AgentLimits.timeout">
+<span class="sig-name descname"><span class="pre">timeout</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">600.0</span></span><a class="headerlink" href="#splunklib.ai.limits.AgentLimits.timeout" title="Link to this definition">¶</a></dt>
+<dd><p>Maximum wall-clock time in seconds allowed for a single invoke call.
+The deadline resets on every invoke. Raises <cite>TimeoutExceededException</cite> when exceeded.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="splunklib.ai.limits.AgentStopException">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.limits.</span></span><span class="sig-name descname"><span class="pre">AgentStopException</span></span><a class="headerlink" href="#splunklib.ai.limits.AgentStopException" title="Link to this definition">¶</a></dt>
+<dd><p>Custom exception to indicate conversation stopping conditions.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="splunklib.ai.limits.TokenLimitExceededException">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.limits.</span></span><span class="sig-name descname"><span class="pre">TokenLimitExceededException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token_limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.limits.TokenLimitExceededException" title="Link to this definition">¶</a></dt>
+<dd><p>Raised by <cite>Agent.invoke</cite>, when token limit exceeds</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="splunklib.ai.limits.StepsLimitExceededException">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.limits.</span></span><span class="sig-name descname"><span class="pre">StepsLimitExceededException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">steps_limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.limits.StepsLimitExceededException" title="Link to this definition">¶</a></dt>
+<dd><p>Raised by <cite>Agent.invoke</cite>, when steps limit exceeds</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="splunklib.ai.limits.TimeoutExceededException">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.limits.</span></span><span class="sig-name descname"><span class="pre">TimeoutExceededException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout_seconds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.limits.TimeoutExceededException" title="Link to this definition">¶</a></dt>
+<dd><p>Raised by <cite>Agent.invoke</cite>, when timeout exceeds</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="splunklib.ai.limits.StructuredOutputRetryLimitExceededException">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.limits.</span></span><span class="sig-name descname"><span class="pre">StructuredOutputRetryLimitExceededException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">retry_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.limits.StructuredOutputRetryLimitExceededException" title="Link to this definition">¶</a></dt>
+<dd><p>Raised by <cite>Agent.invoke</cite>, when structured output retry limit exceeds</p>
+</dd></dl>
+
+<p class="rubric">Tool settings</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.tool_settings.ToolSettings">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.tool_settings.</span></span><span class="sig-name descname"><span class="pre">ToolSettings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">local</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#splunklib.ai.tool_settings.LocalToolSettings" title="splunklib.ai.tool_settings.LocalToolSettings"><span class="pre">splunklib.ai.tool_settings.LocalToolSettings</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remote</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#splunklib.ai.tool_settings.RemoteToolSettings" title="splunklib.ai.tool_settings.RemoteToolSettings"><span class="pre">splunklib.ai.tool_settings.RemoteToolSettings</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.tool_settings.ToolSettings" title="Link to this definition">¶</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="splunklib.ai.tool_settings.ToolSettings.local">
+<span class="sig-name descname"><span class="pre">local</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#splunklib.ai.tool_settings.LocalToolSettings" title="splunklib.ai.tool_settings.LocalToolSettings"><span class="pre">LocalToolSettings</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span></span><a class="headerlink" href="#splunklib.ai.tool_settings.ToolSettings.local" title="Link to this definition">¶</a></dt>
+<dd><p>Controls local tool loading (via <code class="docutils literal notranslate"><span class="pre">bin/tools.py</span></code>).</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">False</span></code>: local tools are not loaded.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">True</span></code>: all local tools are loaded without filtering.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LocalToolSettings(allowlist=...)</span></code>: local tools are loaded and filtered
+by the ToolAllowlist.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="splunklib.ai.tool_settings.ToolSettings.remote">
+<span class="sig-name descname"><span class="pre">remote</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#splunklib.ai.tool_settings.RemoteToolSettings" title="splunklib.ai.tool_settings.RemoteToolSettings"><span class="pre">RemoteToolSettings</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#splunklib.ai.tool_settings.ToolSettings.remote" title="Link to this definition">¶</a></dt>
+<dd><p>Controls remote tool loading (HTTP MCP from the Splunk MCP Server App).</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">None</span></code> (default): remote tools are not loaded.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RemoteToolSettings(allowlist=...)</span></code>: remote tools are loaded and filtered
+by the ToolAllowlist. Requires the Splunk MCP Server App to
+be installed and configured properly.</p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.tool_settings.LocalToolSettings">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.tool_settings.</span></span><span class="sig-name descname"><span class="pre">LocalToolSettings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">allowlist</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#splunklib.ai.tool_settings.ToolAllowlist" title="splunklib.ai.tool_settings.ToolAllowlist"><span class="pre">splunklib.ai.tool_settings.ToolAllowlist</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.tool_settings.LocalToolSettings" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.tool_settings.RemoteToolSettings">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.tool_settings.</span></span><span class="sig-name descname"><span class="pre">RemoteToolSettings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">allowlist</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#splunklib.ai.tool_settings.ToolAllowlist" title="splunklib.ai.tool_settings.ToolAllowlist"><span class="pre">splunklib.ai.tool_settings.ToolAllowlist</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.tool_settings.RemoteToolSettings" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.tool_settings.ToolAllowlist">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.tool_settings.</span></span><span class="sig-name descname"><span class="pre">ToolAllowlist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">*,</span> <span class="pre">names:</span> <span class="pre">~collections.abc.Sequence[str]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;,</span> <span class="pre">tags:</span> <span class="pre">~collections.abc.Sequence[str]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;,</span> <span class="pre">custom_predicate:</span> <span class="pre">~collections.abc.Callable[[~splunklib.ai.tools.ToolMetadata],</span> <span class="pre">bool]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.tool_settings.ToolAllowlist" title="Link to this definition">¶</a></dt>
+<dd><p>Holds tool names and tags allowed to be used by Agents.</p>
+<p>NOTE: Names and tags take precedence over custom predicates.</p>
+</dd></dl>
+
+<p class="rubric">Conversation store</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.conversation_store.ConversationStore">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.conversation_store.</span></span><span class="sig-name descname"><span class="pre">ConversationStore</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splunklib.ai.conversation_store.ConversationStore" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="splunklib.ai.conversation_store.InMemoryStore">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">splunklib.ai.conversation_store.</span></span><span class="sig-name descname"><span class="pre">InMemoryStore</span></span><a class="headerlink" href="#splunklib.ai.conversation_store.InMemoryStore" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Security</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="splunklib.ai.security.detect_injection">
+<span class="sig-prename descclassname"><span class="pre">splunklib.ai.security.</span></span><span class="sig-name descname"><span class="pre">detect_injection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#splunklib.ai.security.detect_injection" title="Link to this definition">¶</a></dt>
+<dd><p>Returns True if the text contains common prompt injection patterns.</p>
+<p>Checks for direct instruction overrides, jailbreak attempts, and system
+prompt extraction requests. Use as an optional guard on user-supplied or
+external data before passing it to the agent.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splunklib.ai.security.truncate_input">
+<span class="sig-prename descclassname"><span class="pre">splunklib.ai.security.</span></span><span class="sig-name descname"><span class="pre">truncate_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10000</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#splunklib.ai.security.truncate_input" title="Link to this definition">¶</a></dt>
+<dd><p>Truncates text to a maximum character length.</p>
+<p>Use to prevent excessively long inputs from reaching the agent. The default
+limit of 10,000 characters follows the OWASP recommendation.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splunklib.ai.security.create_structured_prompt">
+<span class="sig-prename descclassname"><span class="pre">splunklib.ai.security.</span></span><span class="sig-name descname"><span class="pre">create_structured_prompt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instructions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#splunklib.ai.security.create_structured_prompt" title="Link to this definition">¶</a></dt>
+<dd><p>Composes a structured prompt with clear separation between developer
+instructions and untrusted external data.</p>
+<p>Use when building a HumanMessage that combines a task description with
+external data (alert payloads, log entries, API responses, etc.) to reduce
+the risk of indirect prompt injection.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HumanMessage</span><span class="p">(</span>
+    <span class="n">content</span><span class="o">=</span><span class="n">create_structured_prompt</span><span class="p">(</span>
+        <span class="n">instructions</span><span class="o">=</span><span class="s2">"Summarize this security alert and assess its severity."</span><span class="p">,</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">alert_payload</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          <a class="prev-page" href="searchcommandsvalidators.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">splunklib.searchcommands.validators</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2011-2026 Splunk, Inc.
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">splunklib.ai</a><ul>
+<li><a class="reference internal" href="#splunklib.ai.agent.Agent"><code class="docutils literal notranslate"><span class="pre">Agent</span></code></a><ul>
+<li><a class="reference internal" href="#splunklib.ai.agent.Agent.invoke"><code class="docutils literal notranslate"><span class="pre">Agent.invoke()</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.agent.Agent.invoke_with_data"><code class="docutils literal notranslate"><span class="pre">Agent.invoke_with_data()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#splunklib.ai.agent.PrivilegedExecutionError"><code class="docutils literal notranslate"><span class="pre">PrivilegedExecutionError</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.model.PredefinedModel"><code class="docutils literal notranslate"><span class="pre">PredefinedModel</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.model.AnthropicModel"><code class="docutils literal notranslate"><span class="pre">AnthropicModel</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.model.OpenAIModel"><code class="docutils literal notranslate"><span class="pre">OpenAIModel</span></code></a><ul>
+<li><a class="reference internal" href="#splunklib.ai.model.OpenAIModel.extra_body"><code class="docutils literal notranslate"><span class="pre">OpenAIModel.extra_body</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.model.OpenAIModel.httpx_client"><code class="docutils literal notranslate"><span class="pre">OpenAIModel.httpx_client</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#splunklib.ai.model.GoogleModel"><code class="docutils literal notranslate"><span class="pre">GoogleModel</span></code></a><ul>
+<li><a class="reference internal" href="#splunklib.ai.model.GoogleModel.api_key"><code class="docutils literal notranslate"><span class="pre">GoogleModel.api_key</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.model.GoogleModel.credentials"><code class="docutils literal notranslate"><span class="pre">GoogleModel.credentials</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.model.GoogleModel.location"><code class="docutils literal notranslate"><span class="pre">GoogleModel.location</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.model.GoogleModel.project"><code class="docutils literal notranslate"><span class="pre">GoogleModel.project</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.model.GoogleModel.temperature"><code class="docutils literal notranslate"><span class="pre">GoogleModel.temperature</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.model.GoogleModel.vertexai"><code class="docutils literal notranslate"><span class="pre">GoogleModel.vertexai</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#splunklib.ai.messages.BaseMessage"><code class="docutils literal notranslate"><span class="pre">BaseMessage</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.messages.HumanMessage"><code class="docutils literal notranslate"><span class="pre">HumanMessage</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.messages.AIMessage"><code class="docutils literal notranslate"><span class="pre">AIMessage</span></code></a><ul>
+<li><a class="reference internal" href="#splunklib.ai.messages.AIMessage.extras"><code class="docutils literal notranslate"><span class="pre">AIMessage.extras</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#splunklib.ai.messages.SystemMessage"><code class="docutils literal notranslate"><span class="pre">SystemMessage</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.messages.ToolMessage"><code class="docutils literal notranslate"><span class="pre">ToolMessage</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.messages.SubagentMessage"><code class="docutils literal notranslate"><span class="pre">SubagentMessage</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.messages.AgentResponse"><code class="docutils literal notranslate"><span class="pre">AgentResponse</span></code></a><ul>
+<li><a class="reference internal" href="#splunklib.ai.messages.AgentResponse.final_message"><code class="docutils literal notranslate"><span class="pre">AgentResponse.final_message</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#splunklib.ai.messages.TextBlock"><code class="docutils literal notranslate"><span class="pre">TextBlock</span></code></a><ul>
+<li><a class="reference internal" href="#splunklib.ai.messages.TextBlock.extras"><code class="docutils literal notranslate"><span class="pre">TextBlock.extras</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#splunklib.ai.messages.ToolCall"><code class="docutils literal notranslate"><span class="pre">ToolCall</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.messages.SubagentCall"><code class="docutils literal notranslate"><span class="pre">SubagentCall</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.messages.ToolResult"><code class="docutils literal notranslate"><span class="pre">ToolResult</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.messages.SubagentTextResult"><code class="docutils literal notranslate"><span class="pre">SubagentTextResult</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.messages.SubagentStructuredResult"><code class="docutils literal notranslate"><span class="pre">SubagentStructuredResult</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.messages.ToolFailureResult"><code class="docutils literal notranslate"><span class="pre">ToolFailureResult</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.messages.SubagentFailureResult"><code class="docutils literal notranslate"><span class="pre">SubagentFailureResult</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.middleware.AgentMiddleware"><code class="docutils literal notranslate"><span class="pre">AgentMiddleware</span></code></a><ul>
+<li><a class="reference internal" href="#splunklib.ai.middleware.AgentMiddleware.agent_middleware"><code class="docutils literal notranslate"><span class="pre">AgentMiddleware.agent_middleware()</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.middleware.AgentMiddleware.model_middleware"><code class="docutils literal notranslate"><span class="pre">AgentMiddleware.model_middleware()</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.middleware.AgentMiddleware.subagent_middleware"><code class="docutils literal notranslate"><span class="pre">AgentMiddleware.subagent_middleware()</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.middleware.AgentMiddleware.tool_middleware"><code class="docutils literal notranslate"><span class="pre">AgentMiddleware.tool_middleware()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#splunklib.ai.middleware.agent_middleware"><code class="docutils literal notranslate"><span class="pre">agent_middleware()</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.middleware.model_middleware"><code class="docutils literal notranslate"><span class="pre">model_middleware()</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.middleware.tool_middleware"><code class="docutils literal notranslate"><span class="pre">tool_middleware()</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.middleware.subagent_middleware"><code class="docutils literal notranslate"><span class="pre">subagent_middleware()</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.middleware.AgentState"><code class="docutils literal notranslate"><span class="pre">AgentState</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.middleware.AgentRequest"><code class="docutils literal notranslate"><span class="pre">AgentRequest</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.middleware.ModelRequest"><code class="docutils literal notranslate"><span class="pre">ModelRequest</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.middleware.ModelResponse"><code class="docutils literal notranslate"><span class="pre">ModelResponse</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.middleware.ToolRequest"><code class="docutils literal notranslate"><span class="pre">ToolRequest</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.middleware.ToolResponse"><code class="docutils literal notranslate"><span class="pre">ToolResponse</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.middleware.SubagentRequest"><code class="docutils literal notranslate"><span class="pre">SubagentRequest</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.middleware.SubagentResponse"><code class="docutils literal notranslate"><span class="pre">SubagentResponse</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.limits.AgentLimits"><code class="docutils literal notranslate"><span class="pre">AgentLimits</span></code></a><ul>
+<li><a class="reference internal" href="#splunklib.ai.limits.AgentLimits.max_steps"><code class="docutils literal notranslate"><span class="pre">AgentLimits.max_steps</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.limits.AgentLimits.max_structured_output_retires"><code class="docutils literal notranslate"><span class="pre">AgentLimits.max_structured_output_retires</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.limits.AgentLimits.max_tokens"><code class="docutils literal notranslate"><span class="pre">AgentLimits.max_tokens</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.limits.AgentLimits.timeout"><code class="docutils literal notranslate"><span class="pre">AgentLimits.timeout</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#splunklib.ai.limits.AgentStopException"><code class="docutils literal notranslate"><span class="pre">AgentStopException</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.limits.TokenLimitExceededException"><code class="docutils literal notranslate"><span class="pre">TokenLimitExceededException</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.limits.StepsLimitExceededException"><code class="docutils literal notranslate"><span class="pre">StepsLimitExceededException</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.limits.TimeoutExceededException"><code class="docutils literal notranslate"><span class="pre">TimeoutExceededException</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.limits.StructuredOutputRetryLimitExceededException"><code class="docutils literal notranslate"><span class="pre">StructuredOutputRetryLimitExceededException</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.tool_settings.ToolSettings"><code class="docutils literal notranslate"><span class="pre">ToolSettings</span></code></a><ul>
+<li><a class="reference internal" href="#splunklib.ai.tool_settings.ToolSettings.local"><code class="docutils literal notranslate"><span class="pre">ToolSettings.local</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.tool_settings.ToolSettings.remote"><code class="docutils literal notranslate"><span class="pre">ToolSettings.remote</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#splunklib.ai.tool_settings.LocalToolSettings"><code class="docutils literal notranslate"><span class="pre">LocalToolSettings</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.tool_settings.RemoteToolSettings"><code class="docutils literal notranslate"><span class="pre">RemoteToolSettings</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.tool_settings.ToolAllowlist"><code class="docutils literal notranslate"><span class="pre">ToolAllowlist</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.conversation_store.ConversationStore"><code class="docutils literal notranslate"><span class="pre">ConversationStore</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.conversation_store.InMemoryStore"><code class="docutils literal notranslate"><span class="pre">InMemoryStore</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.security.detect_injection"><code class="docutils literal notranslate"><span class="pre">detect_injection()</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.security.truncate_input"><code class="docutils literal notranslate"><span class="pre">truncate_input()</span></code></a></li>
+<li><a class="reference internal" href="#splunklib.ai.security.create_structured_prompt"><code class="docutils literal notranslate"><span class="pre">create_structured_prompt()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=08bfcbec"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/scripts/furo.js?v=46bd48cc"></script>
+    </body>
+</html>
