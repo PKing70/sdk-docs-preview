@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.splunk.logging"},{"l":"com.splunk.logging.hec"},{"l":"com.splunk.logging.serialization"},{"l":"com.splunk.logging.util"}];updateSearchResults();

@@ -1,0 +1,4 @@
+com.splunk.logging
+com.splunk.logging.hec
+com.splunk.logging.serialization
+com.splunk.logging.util

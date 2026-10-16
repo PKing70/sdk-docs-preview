@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Splunk SDK Reference Documentation &middot; Preview</title>
+<style>
+  /* Token values from @splunk/themes v1.12, family="prisma", density="comfortable"
+     — the same configuration dev.splunk.com uses. Identical to the six kit overlays. */
+  :root {
+    --splunk-logo-gradient: linear-gradient(90deg,#f99d1c 0%,#f99d1c 10%,#f4781f 30%,#f16221 43%,#f05a22 58%,#ee1d62 76%,#ed0080 100%);
+    --sans: "Splunk Platform Sans","Splunk Data Sans",Roboto,Droid,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    --mono: "Splunk Platform Mono","Roboto Mono",Consolas,"Droid Sans Mono",Monaco,"Courier New",Courier,monospace;
+    --bg-page:#f9f9f9; --bg-section:#fff;
+    --text:#2c2c2c; --text-default:#4d4d4d; --text-muted:#6b6b6b;
+    --border:#e3e3e3; --link:#0264d7; --link-hover:#014ea8;
+    --radius:4px; --width:67.75rem; --header:56px;
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:var(--sans); font-size:15px; line-height:1.5;
+         color:var(--text-default); background:var(--bg-page); }
+
+  .splunk-masthead { background:var(--bg-section); border-bottom:1px solid var(--border); }
+  .splunk-masthead__accent { height:3px; background:var(--splunk-logo-gradient); }
+  .splunk-masthead__inner { max-width:var(--width); margin:0 auto; height:var(--header);
+         padding:0 1.5rem; display:flex; align-items:center; gap:1rem; }
+  .wordmark { font-weight:700; font-size:1.125rem; letter-spacing:-.02em;
+         background:var(--splunk-logo-gradient); -webkit-background-clip:text; background-clip:text;
+         -webkit-text-fill-color:transparent; color:transparent; text-decoration:none; }
+  .divider { width:1px; height:20px; background:var(--border); }
+  .masthead-title { font-weight:500; font-size:.9375rem; color:var(--text); }
+  .spacer { flex:1 1 auto; }
+  .badge { font-size:.75rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+         color:#fff; background:var(--text); padding:.2rem .5rem; border-radius:var(--radius); }
+
+  main { max-width:var(--width); margin:0 auto; padding:2.5rem 1.5rem 4rem; }
+  h1 { font-size:2rem; font-weight:700; letter-spacing:-.02em; color:var(--text); margin:0 0 .5rem; }
+  .lede { font-size:1.0625rem; color:var(--text-default); max-width:46rem; margin:0 0 .5rem; }
+  .note { font-size:.875rem; color:var(--text-muted); max-width:46rem; margin:0 0 2.5rem;
+          border-left:3px solid #f99d1c; background:rgba(249,157,28,.1);
+          padding:.625rem 1rem; border-radius:0 var(--radius) var(--radius) 0; }
+
+  h2 { font-size:.8125rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+       color:var(--text-muted); margin:2rem 0 .75rem; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(19rem,1fr)); gap:1rem; }
+  a.card { display:block; background:var(--bg-section); border:1px solid var(--border);
+       border-radius:var(--radius); padding:1.125rem 1.25rem; text-decoration:none;
+       transition:border-color .12s, box-shadow .12s; }
+  a.card:hover { border-color:var(--link); box-shadow:0 1px 4px rgba(0,0,0,.06); }
+  .card h3 { font-family:var(--mono); font-size:.9375rem; font-weight:700; color:var(--link);
+       margin:0 0 .3rem; }
+  .card p { font-size:.875rem; color:var(--text-default); margin:0 0 .6rem; }
+  .meta { font-size:.75rem; color:var(--text-muted); display:flex; gap:.75rem; flex-wrap:wrap; }
+  .meta span { white-space:nowrap; }
+  .gen { font-family:var(--mono); }
+
+  footer { border-top:1px solid var(--border); margin-top:3rem; padding-top:1.25rem;
+       font-size:.8125rem; color:var(--text-muted); }
+  footer code { font-family:var(--mono); background:#f4f4f5; padding:.1em .35em; border-radius:var(--radius); }
+</style>
+</head>
+<body>
+
+<div class="splunk-masthead">
+  <div class="splunk-masthead__accent" aria-hidden="true"></div>
+  <div class="splunk-masthead__inner">
+    <a class="wordmark" href="https://dev.splunk.com/">splunk&gt;</a>
+    <span class="divider" aria-hidden="true"></span>
+    <span class="masthead-title">SDK Reference Documentation</span>
+    <span class="spacer"></span>
+    <span class="badge">Preview</span>
+  </div>
+</div>
+
+<main>
+  <h1>SDK reference documentation</h1>
+  <p class="lede">
+    Proposed new home for the six Splunk SDK and logging-library API references,
+    currently published to docs.splunk.com.
+  </p>
+  <p class="note">
+    <strong>Preview build.</strong> Hosted on a personal GitHub account to demonstrate
+    layout, styling, in-page search and version selection. Production would live at
+    <code>splunk.github.io/&lt;repo&gt;/</code>, linked from dev.splunk.com. Version-selector
+    entries and some masthead links point at those production URLs and will not resolve here.
+  </p>
+
+  <h2>SDKs</h2>
+  <div class="grid">
+    <a class="card" href="splunk-sdk-python/">
+      <h3>splunk-sdk-python</h3>
+      <p>Splunk SDK for Python — <code>splunklib</code> client, binding, search commands and modular inputs.</p>
+      <div class="meta"><span class="gen">Sphinx</span><span>12 pages</span><span>search &#10003;</span><span>light + dark</span></div>
+    </a>
+    <a class="card" href="splunk-sdk-java/">
+      <h3>splunk-sdk-java</h3>
+      <p>Splunk SDK for Java — the <code>com.splunk</code> package, service, collections and entities.</p>
+      <div class="meta"><span class="gen">JavaDoc 21</span><span>187 pages</span><span>search &#10003;</span></div>
+    </a>
+    <a class="card" href="splunk-sdk-javascript/">
+      <h3>splunk-sdk-javascript</h3>
+      <p>Splunk SDK for JavaScript — <code>splunkjs</code> service and client classes.</p>
+      <div class="meta"><span class="gen">JSDoc 4</span><span>49 pages</span><span>migrated off dox</span></div>
+    </a>
+  </div>
+
+  <h2>Logging libraries</h2>
+  <div class="grid">
+    <a class="card" href="splunk-library-javalogging/">
+      <h3>splunk-library-javalogging</h3>
+      <p>Splunk Logging for Java — HTTP Event Collector appenders for Logback and Log4j.</p>
+      <div class="meta"><span class="gen">JavaDoc 21</span><span>42 pages</span><span>search &#10003;</span></div>
+    </a>
+    <a class="card" href="splunk-javascript-logging/">
+      <h3>splunk-javascript-logging</h3>
+      <p>Splunk Logging for JavaScript — HTTP Event Collector logging interface.</p>
+      <div class="meta"><span class="gen">JSDoc 4</span><span>6 pages</span></div>
+    </a>
+    <a class="card" href="splunk-bunyan-logger/">
+      <h3>splunk-bunyan-logger</h3>
+      <p>Splunk Bunyan Logger — HTTP Event Collector stream for Bunyan.</p>
+      <div class="meta"><span class="gen">JSDoc 4</span><span>5 pages</span></div>
+    </a>
+  </div>
+
+  <footer>
+    All six kits share one masthead definition and one set of design tokens, taken from
+    <code>@splunk/themes</code> at <code>family="prisma"</code>, <code>density="comfortable"</code> —
+    the same configuration dev.splunk.com uses. 301 pages total.
+  </footer>
+</main>
+
+</body>
+</html>
