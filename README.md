@@ -22,7 +22,7 @@ automated.
 
 | Kit | Live preview | Generator | Pages |
 |---|---|---|---|
-| Splunk SDK for Python | [splunk-sdk-python/](https://pking70.github.io/sdk-docs-preview/splunk-sdk-python/) | Sphinx + Furo | 12 |
+| Splunk SDK for Python | [splunk-sdk-python/](https://pking70.github.io/sdk-docs-preview/splunk-sdk-python/) | Sphinx + Furo | 12 (×4 versions) |
 | Splunk SDK for Java | [splunk-sdk-java/](https://pking70.github.io/sdk-docs-preview/splunk-sdk-java/) | JavaDoc 21 | 187 |
 | Splunk Logging for Java | [splunk-library-javalogging/](https://pking70.github.io/sdk-docs-preview/splunk-library-javalogging/) | JavaDoc 21 | 42 |
 | Splunk SDK for JavaScript | [splunk-sdk-javascript/](https://pking70.github.io/sdk-docs-preview/splunk-sdk-javascript/) | JSDoc 4 | 49 |
@@ -37,7 +37,7 @@ Some representative deep links, to confirm nested paths resolve:
 - [`splunk-sdk-javascript/splunkjs.Service.html`](https://pking70.github.io/sdk-docs-preview/splunk-sdk-javascript/splunkjs.Service.html)
 - [`splunk-library-javalogging/com/splunk/logging/HttpEventCollectorSender.html`](https://pking70.github.io/sdk-docs-preview/splunk-library-javalogging/com/splunk/logging/HttpEventCollectorSender.html)
 - [`splunk-sdk-java/search.html`](https://pking70.github.io/sdk-docs-preview/splunk-sdk-java/search.html) — JavaDoc's built-in client-side search
-- [`splunk-sdk-python/search.html`](https://pking70.github.io/sdk-docs-preview/splunk-sdk-python/search.html) — Sphinx's built-in client-side search
+- [`splunk-sdk-python/latest/search.html`](https://pking70.github.io/sdk-docs-preview/splunk-sdk-python/latest/search.html) — Sphinx's built-in client-side search
 
 ## How these URLs map to production
 
@@ -59,10 +59,35 @@ Because every kit emits only relative asset paths, the extra depth here
 changes nothing — which is itself the useful result. If it renders correctly at
 this depth it will render correctly at the shallower production depth.
 
-Versioning would add one more segment, e.g.
-`splunk.github.io/splunk-sdk-python/latest/` and
-`splunk.github.io/splunk-sdk-python/2.1.0/`, with `latest/` as the canonical
-path and older versions carrying `rel=canonical` plus `noindex`.
+## Versioning — implemented for the Python kit
+
+Versioning adds one segment below the kit. The Python SDK demonstrates it:
+
+| URL | Contents |
+|---|---|
+| [`splunk-sdk-python/`](https://pking70.github.io/sdk-docs-preview/splunk-sdk-python/) | redirects to `latest/` |
+| [`splunk-sdk-python/latest/`](https://pking70.github.io/sdk-docs-preview/splunk-sdk-python/latest/) | 3.0.1 |
+| [`splunk-sdk-python/3.0.0/`](https://pking70.github.io/sdk-docs-preview/splunk-sdk-python/3.0.0/) | 3.0.0 |
+| [`splunk-sdk-python/2.1.1/`](https://pking70.github.io/sdk-docs-preview/splunk-sdk-python/2.1.1/) | 2.1.1 |
+| [`splunk-sdk-python/2.1.0/`](https://pking70.github.io/sdk-docs-preview/splunk-sdk-python/2.1.0/) | 2.1.0 |
+
+Each version is built from its git release tag — no manual content handoff.
+The set reflects a **two-year retention rule**: as of 2026-10-16 the cutoff is
+2024-10-16, which admits exactly these four. The next tag out is 2.0.2
+(2024-06-27).
+
+Note that 2.1.0 (2024-10-30) sits only 14 days inside that boundary. A
+date-based rule means the published set shrinks without a release happening, so
+a count-based rule ("last four releases") may be steadier operationally. Worth
+deciding deliberately.
+
+The version picker in the masthead uses relative `../<version>/` links, so it
+works at any host or path depth. Non-latest versions show a banner linking back
+to `latest/`. In production, older versions should also carry `rel=canonical`
+pointing at `latest/` plus `noindex`, so search engines and the Fusion crawler
+index one copy rather than four near-duplicates.
+
+The other five kits are still single-version in this preview.
 
 ## What it demonstrates
 
@@ -93,6 +118,8 @@ content rather than a fallback shell:
 - `searchindex.js` (44 KB) for Sphinx and `search.html` for JavaDoc, so
   in-page search works with no backend
 - nested deep links three levels down, e.g. `com/splunk/Service.html` (184 KB)
+- all four Python versions, and every cross-version picker link
+- no Sphinx `.doctrees` build cache published (it was, briefly — see below)
 
 ## Notes
 
@@ -106,3 +133,22 @@ rebuild.
 
 See `DEPLOY.md` for the full deployment notes, verification checklist, and one
 pre-existing SDK content bug worth fixing.
+
+## Build requirements worth knowing
+
+**The Python kit needs Python 3.13 and the `[ai]` extra.** `splunklib.ai`
+imports `httpx`, `langchain`, `mcp` and `pydantic`, and the module requires
+3.13+. Without both, autodoc fails *silently*: `sphinx-build` still exits 0 and
+`ai.html` publishes as a 15 KB shell with **zero** documented members. With
+them it is 148 KB with 72 members. Any CI that builds these docs must pin
+3.13+ and install `.[ai]`.
+
+(Related, for the SDK team rather than this repo: `splunklib/ai/` has existed
+since 2.1.0 but `docs/ai.rst` only appears at 3.0.1, so the AI surface shipped
+undocumented for three releases.)
+
+**Pass `-d` to `sphinx-build`.** Without it, Sphinx writes its `.doctrees`
+cache *inside* the HTML output — about 3.5 MB of pickles per version, which
+then gets published. The SDK's own Makefile does this correctly with
+`-d docs/_build/doctrees`; an earlier revision of this repo did not, and shipped
+the cache publicly before it was stripped.
