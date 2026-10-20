@@ -1,0 +1,59 @@
+{#-
+  Splunk SDK reference — masthead override.
+
+  Extends Furo's layout and fills only its `announcement` block, which renders
+  full-width above the sidebar and content columns. Nothing else in Furo's
+  template tree is touched, so theme upgrades remain low-risk.
+
+  Version list is driven by `html_context.splunk_versions` in conf.py:
+      html_context = {
+        "splunk_versions": [("latest", "3.0 (latest)"), ("2.1", "2.1"), ...],
+        "splunk_version_current": "latest",
+        "splunk_docs_base": "https://splunk.github.io/splunk-sdk-python",
+      }
+-#}
+{% extends "!layout.html" %}
+
+{% block announcement %}
+<div class="splunk-masthead">
+  <div class="splunk-masthead__accent" aria-hidden="true"></div>
+  <div class="splunk-masthead__inner">
+    {#- TODO swap for the licensed Splunk logo asset; text wordmark is a placeholder -#}
+    <a class="splunk-masthead__wordmark" href="https://dev.splunk.com/">splunk&gt;</a>
+    <span class="splunk-masthead__divider" aria-hidden="true"></span>
+    <a class="splunk-masthead__product" href="{{ pathto(master_doc) }}">{{ project }}</a>
+
+    <span class="splunk-masthead__spacer"></span>
+
+    <div class="splunk-masthead__right">
+      {%- if splunk_versions %}
+      <div class="splunk-version">
+        <label class="splunk-version__label" for="splunk-version-select">Version</label>
+        <select
+          class="splunk-version__select"
+          id="splunk-version-select"
+          onchange="if(this.value)window.location.href=this.value;"
+        >
+          {%- for slug, label in splunk_versions %}
+          <option
+            value="{{ splunk_docs_base }}/{{ slug }}/"
+            {% if slug == splunk_version_current %}selected{% endif %}
+          >{{ label }}</option>
+          {%- endfor %}
+        </select>
+      </div>
+      {%- endif %}
+      <a class="splunk-masthead__portal-link" href="https://dev.splunk.com/enterprise/docs/devtools/python/sdk-python/">
+        Guides on dev.splunk.com
+      </a>
+    </div>
+  </div>
+</div>
+
+{%- if splunk_version_current and splunk_version_current != "latest" %}
+<div class="splunk-version-banner">
+  You are viewing documentation for version <strong>{{ splunk_version_current }}</strong>.
+  <a href="{{ splunk_docs_base }}/latest/">Go to the latest version</a>.
+</div>
+{%- endif %}
+{% endblock announcement %}

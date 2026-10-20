@@ -1,0 +1,91 @@
+/* ============================================================================
+   Splunk palette for clean-jsdoc-theme 5.x
+   ----------------------------------------------------------------------------
+   Wired via jsdoc.json:  opts.theme_opts.customCssFile
+
+   clean-jsdoc-theme exposes a 14-token semantic contract (`--clean-*`), so this
+   is a pure token remap — the same technique used for Furo (104 vars) and
+   JDK 21 JavaDoc (34 vars), and far smaller than the selector-override overlay
+   the JSDoc *default* template required.
+
+   Token values are the same @splunk/themes v1.12 prisma/comfortable set used by
+   the other kits, so all six stay siblings. Brand colors from CustomColors.ts.
+
+   The theme's own tokens are OKLCH; overriding with hex is fine — custom
+   properties are format-agnostic.
+   ========================================================================== */
+
+:root {
+  /* ---- Splunk brand ---- */
+  --splunk-orange: #f99d1c;
+  --splunk-orange-dark: #f05a22;
+  --splunk-pink: #ee1d62;
+  --splunk-pink-dark: #ed0080;
+  --splunk-logo-gradient: linear-gradient(
+    90deg, #f99d1c 0%, #f99d1c 10%, #f4781f 30%, #f16221 43%,
+    #f05a22 58%, #ee1d62 76%, #ed0080 100%
+  );
+
+  --splunk-font-sans: "Splunk Platform Sans", "Splunk Data Sans", Roboto, Droid,
+    "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --splunk-font-mono: "Splunk Platform Mono", "Roboto Mono", Consolas,
+    "Droid Sans Mono", Monaco, "Courier New", Courier, monospace;
+
+  /* ---- LIGHT: remap the theme's 14 tokens (prisma/comfortable/light) ---- */
+  --clean-bg: #ffffff;                 /* backgroundColorSection */
+  --clean-bg-muted: #f9f9f9;           /* backgroundColorPage */
+  --clean-fg: #2c2c2c;                 /* contentColorActive */
+  --clean-fg-muted: #6b6b6b;           /* contentColorMuted */
+  --clean-accent: #0264d7;             /* interactiveColorPrimary */
+  --clean-accent-fg: #ffffff;          /* contentColorInverted */
+  --clean-border: #e3e3e3;             /* tint of borderColor */
+  --clean-code-header-bg: #f4f4f5;
+  --clean-code-header-fg: #4d4d4d;     /* contentColorDefault */
+  --clean-code-highlight-bg: rgba(249, 157, 28, 0.15);  /* Splunk orange tint */
+  --clean-link: #0264d7;               /* linkColor */
+
+  /* The theme defaults --clean-font-heading to a SERIF ('Source Serif 4'),
+     exactly as JDK JavaDoc does. Unifying it is most of the sibling-parity
+     effect across the six kits. */
+  --clean-font-heading: var(--splunk-font-sans);
+  --clean-font-body: var(--splunk-font-sans);
+  --clean-font-mono: var(--splunk-font-mono);
+}
+
+/* ---- DARK: the theme ships a dark scheme; remap it to prisma/dark ---- */
+[data-theme="dark"] {
+  --clean-bg: #1a1c20;                 /* backgroundColorSection (dark) */
+  --clean-bg-muted: #111215;           /* backgroundColorPage (dark) */
+  --clean-fg: #fafafa;                 /* contentColorActive (dark) */
+  --clean-fg-muted: #909090;           /* contentColorMuted (dark) */
+  --clean-accent: #3993ff;             /* interactiveColorPrimary (dark) */
+  --clean-accent-fg: #000000;          /* contentColorInverted (dark) */
+  --clean-border: #2e3034;
+  --clean-code-header-bg: #23262b;
+  --clean-code-header-fg: #b5b5b5;     /* contentColorDefault (dark) */
+  --clean-code-highlight-bg: rgba(249, 157, 28, 0.2);
+  --clean-link: #3993ff;               /* linkColor (dark) */
+}
+
+/* ============================================================================
+   Splunk brand accent — the gradient hairline used on all six kits.
+   Applied to the theme's own header rather than injecting a second masthead,
+   so there is one header, not two stacked.
+   ========================================================================== */
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--splunk-logo-gradient);
+  z-index: 100;
+}
+
+/* nudge the theme's sticky header below the hairline */
+header,
+[class*="header"] {
+  --splunk-accent-offset: 3px;
+}

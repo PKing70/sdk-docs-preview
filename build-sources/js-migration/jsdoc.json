@@ -1,0 +1,5 @@
+{
+  "plugins": ["jsdoc-plugins/endpoint-tag.js"],
+  "source": { "include": ["lib"] },
+  "opts": { "recurse": true }
+}
