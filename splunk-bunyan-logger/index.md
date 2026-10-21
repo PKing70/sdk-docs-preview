@@ -1,0 +1,115 @@
+---
+title: Home
+kind: index
+---
+
+# Splunk HTTP Event Collector Stream for Bunyan
+
+#### Version 0.11.0
+
+This project provides a [Bunyan](https://www.npmjs.com/package/bunyan) stream for HTTP Event Collector in Splunk Enterprise and Splunk Cloud.
+
+## Requirements
+
+- Node.js v4 or later. Splunk HTTP Event Collector Stream for Bunyan is tested with Node.js v10.0 and v14.0.
+- Splunk Enterprise 6.3.0 or later, or Splunk Cloud. Splunk HTTP Event Collector Stream for Bunyan is tested with Splunk Enterprise 8.0 and 8.2.0.
+- An HTTP Event Collector token from your Splunk Enterprise or Splunk Cloud server.
+- [Bunyan](https://www.npmjs.com/package/bunyan) (`npm install --save bunyan`).
+
+## Installation
+
+First, update npm to the latest version by running: `sudo npm install npm -g`.
+
+Then run: `npm install --save splunk-bunyan-logger`.
+
+## Usage
+
+See the `examples` folder for usage examples:
+
+- `all_batching.js`: Shows how to configure a Bunyan Stream with the 3 batching settings: `batchInterval`, `maxBatchCount`, & `maxBatchSize`.
+- `basic.js`: Shows how to configure a Bunyan stream and send a log message to Splunk.
+- `custom_format.js`: Shows how to configure a Bunyan Stream to log messages to Splunk using a custom format.
+- `manual_batching.js`: Shows how to queue log messages, and send them in batches by manually calling `flush()`.
+- `retry.js`: Shows how to configure retries on errors.
+
+### Support
+
+The Splunk HTTP Event Collector Stream for Bunyan is community-supported.
+
+1. You can find help through our community on [Splunk Answers](https://community.splunk.com/t5/tag/logging-library-javascript/tg-p) (use the `logging-library-javascript` tag to identify your questions).
+1. File issues on [GitHub](https://github.com/splunk/splunk-bunyan-logger/issues).
+
+### SSL
+
+Note: SSL certificate validation is diabled by default. To enable it, set `logger.requestOptions.strictSSL = true` on your `SplunkStream` instance:
+
+```
+var bunyan = require("bunyan");
+var splunkBunyan = require("splunk-bunyan-logger");
+
+var config = {
+    token: "your-token-here",
+    url: "https://splunk.local:8088"
+};
+
+var splunkStream = splunkBunyan.createStream(config);
+// Enable SSL certificate validation
+stream.logger.requestOptions.strictSSL = true;
+
+// Note: splunkStream must be set to an element in the streams array
+var Logger = bunyan.createLogger({
+    name: "my logger",
+    streams: [
+        splunkStream
+    ]
+});
+```
+
+### Basic example
+
+```
+var bunyan = require("bunyan");
+var splunkBunyan = require("splunk-bunyan-logger");
+
+var config = {
+    token: "your-token-here",
+    url: "https://splunk.local:8088"
+};
+
+var splunkStream = splunkBunyan.createStream(config);
+
+// Note: splunkStream must be set to an element in the streams array
+var Logger = bunyan.createLogger({
+    name: "my logger",
+    streams: [
+        splunkStream
+    ]
+});
+
+var payload = {
+    // Message can be anything; doesn't have to be an object
+    message: {
+        temperature: "70F",
+        chickenCount: 500
+    }
+};
+
+console.log("Sending payload", payload);
+Logger.info(payload, "Chicken coup looks stable.");
+```
+
+## Community
+
+Stay connected with other developers building on Splunk software.
+
+|             |                                                         |
+| ----------- | ------------------------------------------------------- |
+| **Email**   | devinfo\@splunk.com                                     |
+| **Issues**  | https\://github.com/splunk/splunk-bunyan-logger/issues/ |
+| **Answers** | http\://answers.splunk.com/                             |
+| **Blog**    | http\://blogs.splunk.com/dev/                           |
+| **Twitter** | @splunkdev                                              |
+
+## License
+
+The Splunk HTTP Event Collector Stream for Bunyan is licensed under the Apache License 2.0. Details can be found in the LICENSE file.
