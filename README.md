@@ -22,14 +22,15 @@ automated.
 
 | Kit | Live preview | Generator | Pages |
 |---|---|---|---|
-| Splunk SDK for Python | [splunk-sdk-python/](https://pking70.github.io/sdk-docs-preview/splunk-sdk-python/) | Sphinx + Furo | 12 (×4 versions) |
+| Splunk SDK for Python | [splunk-sdk-python/](https://pking70.github.io/sdk-docs-preview/splunk-sdk-python/) | Sphinx + Furo | 12 latest; 11 each for 3 older versions; 1 redirect |
 | Splunk SDK for Java | [splunk-sdk-java/](https://pking70.github.io/sdk-docs-preview/splunk-sdk-java/) | JavaDoc 21 | 187 |
 | Splunk Logging for Java | [splunk-library-javalogging/](https://pking70.github.io/sdk-docs-preview/splunk-library-javalogging/) | JavaDoc 21 | 42 |
 | Splunk SDK for JavaScript | [splunk-sdk-javascript/](https://pking70.github.io/sdk-docs-preview/splunk-sdk-javascript/) | JSDoc 4 | 49 |
 | Splunk Logging for JavaScript | [splunk-javascript-logging/](https://pking70.github.io/sdk-docs-preview/splunk-javascript-logging/) | JSDoc 4 | 6 |
 | Splunk Bunyan Logger | [splunk-bunyan-logger/](https://pking70.github.io/sdk-docs-preview/splunk-bunyan-logger/) | JSDoc 4 | 5 |
 
-301 HTML pages total.
+334 reference pages plus the Python index redirect across the six kits (335 kit HTML files; 336 HTML files including this landing page).
+
 
 Some representative deep links, to confirm nested paths resolve:
 
